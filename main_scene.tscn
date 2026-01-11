@@ -69,10 +69,11 @@ axis_stretch_horizontal = 2
 axis_stretch_vertical = 1
 
 [node name="BlockSpawner" type="Node2D" parent="."]
+position = Vector2(307, 88)
 script = ExtResource("3_d5x1h")
 
 [node name="NewBlock" type="Node2D" parent="BlockSpawner"]
-position = Vector2(308, 124)
+position = Vector2(1, 5)
 metadata/_edit_group_ = true
 
 [node name="Pipe" type="Sprite2D" parent="BlockSpawner/NewBlock"]
