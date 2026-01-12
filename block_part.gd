@@ -4,17 +4,19 @@ extends Sprite2D
 class_name BlockPart
 
 @export
-var atlas_coordinates: Vector2i
+var atlas_coordinates: Vector2i:
+	get:
+		return atlas_coordinates
+	set(x):
+		atlas_coordinates = x
+		texture.region.position = 32 * Vector2(atlas_coordinates)
 
-func _create() -> void:
+func _init() -> void:
 	texture = AtlasTexture.new()
 	texture.atlas = load("res://img/pipes_atlas.tres")
-	texture.region.size = Vector2i(32, 32)
-	texture.region.position = Vector2i(0, 0)
-
-func set_coordinates(coords: Vector2i):
-	atlas_coordinates = coords
-	texture.region.position = 32 * coords
+	texture.region.size = Vector2(32, 32)
+	#texture.region.position = Vector2(0, 0)
+	atlas_coordinates = Vector2i(1, 1)
 
 func is_free():
 	return is_tile_free(my_pos_in_tiles())
