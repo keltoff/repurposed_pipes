@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://dredt2euhd4sp"]
+[gd_scene load_steps=17 format=4 uid="uid://dredt2euhd4sp"]
 
-[ext_resource type="Texture2D" uid="uid://b6rrxtk8utjxr" path="res://img/pipes_small.png" id="1_0f027"]
+[ext_resource type="Texture2D" uid="uid://irq2uedvugdh" path="res://img/pipes_rotated.png" id="1_d5x1h"]
 [ext_resource type="Texture2D" uid="uid://dwtwaudq33xr0" path="res://img/Gold_Border.png" id="1_gyfs4"]
-[ext_resource type="Script" uid="uid://ddiho5nhh5yqw" path="res://block_spawner.gd" id="3_d5x1h"]
+[ext_resource type="Texture2D" uid="uid://cyqb2u5yb6mt0" path="res://img/pipes_atlas.tres" id="4_hq1ik"]
+[ext_resource type="Script" uid="uid://cpy82sfmefxmw" path="res://new_block.gd" id="4_nfk4m"]
+[ext_resource type="Script" uid="uid://b8avmi6foffyj" path="res://block_part.gd" id="5_8mm7a"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_gyfs4"]
 tile_data = PackedInt32Array(0, 65537, 0, 1, 65537, 0, 2, 65537, 0, 3, 65537, 0)
@@ -16,17 +18,22 @@ tile_data = PackedInt32Array(65536, 65537, 0, 1, 65537, 1610612736, 65537, 13107
 [sub_resource type="TileMapPattern" id="TileMapPattern_hq1ik"]
 tile_data = PackedInt32Array(0, 196609, 0, 65536, 196609, 0, 1, 196609, 0, 65537, 196609, 0)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2c62f"]
-texture = ExtResource("1_0f027")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8mm7a"]
+resource_name = "Pipes"
+texture = ExtResource("1_d5x1h")
 texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-0:0/0/custom_data_0 = "BR"
-1:0/0 = 0
-1:0/0/custom_data_0 = "LR"
-2:0/0 = 0
-2:0/0/custom_data_0 = "BLR"
 3:0/0 = 0
-3:0/0/custom_data_0 = "TBLR"
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_gyfs4"]
 tile_size = Vector2i(32, 32)
@@ -34,29 +41,39 @@ physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
-custom_data_layer_0/name = ""
-custom_data_layer_0/type = 4
-sources/1 = SubResource("TileSetAtlasSource_2c62f")
+sources/0 = SubResource("TileSetAtlasSource_8mm7a")
 pattern_0 = SubResource("TileMapPattern_gyfs4")
 pattern_1 = SubResource("TileMapPattern_d5x1h")
 pattern_2 = SubResource("TileMapPattern_8mm7a")
 pattern_3 = SubResource("TileMapPattern_hq1ik")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d5x1h"]
-atlas = ExtResource("1_0f027")
-region = Rect2(0, 0, 64, 0)
+[sub_resource type="AtlasTexture" id="AtlasTexture_66tet"]
+resource_name = "Pipes"
+atlas = ExtResource("4_hq1ik")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ycvg"]
+resource_name = "Pipes"
+atlas = ExtResource("4_hq1ik")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wr18j"]
+atlas = ExtResource("4_hq1ik")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8mm7a"]
+load_path = "res://.godot/imported/pipes_rotated.png-2d2119b0339a8211ff4c13c0e4f426a4.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfk4m"]
+atlas = SubResource("CompressedTexture2D_8mm7a")
+region = Rect2(32, 32, 32, 32)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-position = Vector2(-96, -128)
-tile_map_data = PackedByteArray("AAAOAAwAAQAAAAAAAAAOAA0AAQAAAAAAAGAPAA0AAQACAAAAAAAQAA0AAQADAAAAAAAJAA0AAQACAAAAAAAHABQAAQABAAAAAAAIABQAAQABAAAAAAAJABQAAQABAAAAAAAKABQAAQABAAAAAAALABQAAQABAAAAAAAMABQAAQABAAAAAAANABQAAQABAAAAAAAOABQAAQABAAAAAAAPABQAAQABAAAAAAAQABQAAQABAAAAAAARABQAAQABAAAAAAAHABMAAQADAAAAAAAHABIAAQADAAAAAAAHABEAAQADAAAAAAAHABAAAQADAAAAAAAHAA8AAQADAAAAAAAHAA4AAQADAAAAAAAHAA0AAQADAAAAAAAHAAwAAQADAAAAAAAHAAsAAQADAAAAAAAHAAoAAQADAAAAAAAHAAkAAQADAAAAAAAHAAgAAQADAAAAAAAHAAcAAQADAAAAAAARABMAAQADAAAAAAARABIAAQADAAAAAAARABEAAQADAAAAAAARABAAAQADAAAAAAARAA8AAQADAAAAAAARAA4AAQADAAAAAAARAA0AAQADAAAAAAARAAwAAQADAAAAAAARAAsAAQADAAAAAAARAAoAAQADAAAAAAARAAkAAQADAAAAAAARAAgAAQADAAAAAAARAAcAAQADAAAAAAASAAYAAQADAAAAAAASAAcAAQADAAAAAAASAAgAAQADAAAAAAASAAkAAQADAAAAAAASAAoAAQADAAAAAAASAAsAAQADAAAAAAASAAwAAQADAAAAAAASAA0AAQADAAAAAAASAA4AAQADAAAAAAASAA8AAQADAAAAAAASABAAAQADAAAAAAASABEAAQADAAAAAAASABIAAQADAAAAAAASABMAAQADAAAAAAASABQAAQADAAAAAAAJAA8AAQABAAAAAAALAA4AAQABAAAAAAAKAA4AAQAAAAAAAAAKAA8AAQAAAAAAADANAA8AAQACAAAAADAMAA8AAQABAAAAAAAOAA8AAQABAAAAAAANAA4AAQABAAAAAGAJABAAAQABAAAAAAAKABAAAQABAAAAAAALABAAAQABAAAAAAAMABAAAQABAAAAAAA=")
-tile_set = SubResource("TileSet_gyfs4")
-
 [node name="Frame" type="NinePatchRect" parent="."]
-offset_left = 124.0
+offset_left = 122.0
 offset_top = 61.0
-offset_right = 515.0
+offset_right = 536.0
 offset_bottom = 547.0
 texture = ExtResource("1_gyfs4")
 draw_center = false
@@ -68,25 +85,46 @@ patch_margin_bottom = 4
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 1
 
-[node name="BlockSpawner" type="Node2D" parent="."]
-position = Vector2(307, 88)
-script = ExtResource("3_d5x1h")
+[node name="Tiles" type="TileMapLayer" parent="Frame"]
+unique_name_in_owner = true
+position = Vector2(190, 35)
+tile_map_data = PackedByteArray("AAD5////AAACAAIAAAD5/wAAAAACAAIAAAD5/wEAAAACAAIAAAD5/wIAAAACAAIAAAD5/wMAAAADAAMAAAD5/wQAAAACAAIAAAD5/wUAAAACAAIAAAD5/wYAAAACAAIAAAD5/wcAAAACAAIAAAD5/wkAAAACAAIAAAD5/woAAAACAAIAAAD5/wgAAAACAAIAAAAHAP//AAACAAIAAAAHAAAAAAACAAIAAAAHAAEAAAACAAIAAAAHAAIAAAACAAIAAAAHAAQAAAACAAIAAAAHAAUAAAACAAIAAAAHAAYAAAACAAIAAAAHAAcAAAACAAIAAAAHAAgAAAACAAIAAAAHAAkAAAACAAIAAAAHAAoAAAACAAIAAAAHAAsAAAACAAIAAAAHAAwAAAACAAIAAAAHAA0AAAACAAIAAAD5/wsAAAACAAIAAAD5/wwAAAACAAIAAAD5/w0AAAACAAIAAAD6/w4AAAABAAEAAAD7/w4AAAABAAEAAAD8/w4AAAABAAEAAAD9/w4AAAABAAEAAAD+/w4AAAABAAEAAAD//w4AAAADAAMAAAAAAA4AAAABAAEAAAABAA4AAAABAAEAAAACAA4AAAABAAEAAAADAA4AAAADAAMAAAAEAA4AAAABAAEAAAAFAA4AAAABAAEAAAAGAA4AAAABAAEAAAD5/w4AAAABAAIAAAAHAA4AAAAAAAMAAAAHAAMAAAADAAMAAAA=")
+tile_set = SubResource("TileSet_gyfs4")
 
-[node name="NewBlock" type="Node2D" parent="BlockSpawner"]
-position = Vector2(1, 5)
-metadata/_edit_group_ = true
+[node name="NewBlock" type="Node2D" parent="."]
+position = Vector2(306, 84)
+script = ExtResource("4_nfk4m")
 
-[node name="Pipe" type="Sprite2D" parent="BlockSpawner/NewBlock"]
-texture = SubResource("AtlasTexture_d5x1h")
-
-[node name="Pipe2" type="Sprite2D" parent="BlockSpawner/NewBlock"]
+[node name="BlockPart" type="Sprite2D" parent="NewBlock"]
 position = Vector2(-32, 32)
-rotation = 3.1415927
-texture = SubResource("AtlasTexture_d5x1h")
+texture = SubResource("AtlasTexture_66tet")
+script = ExtResource("5_8mm7a")
+atlas_coordinates = Vector2i(1, 1)
+metadata/_custom_type_script = "uid://b8avmi6foffyj"
 
-[node name="Timer" type="Timer" parent="BlockSpawner"]
+[node name="BlockPart2" type="Sprite2D" parent="NewBlock"]
+position = Vector2(0, 32)
+texture = SubResource("AtlasTexture_7ycvg")
+script = ExtResource("5_8mm7a")
+atlas_coordinates = Vector2i(0, 3)
+metadata/_custom_type_script = "uid://b8avmi6foffyj"
+
+[node name="BlockPart3" type="Sprite2D" parent="NewBlock"]
+texture = SubResource("AtlasTexture_wr18j")
+script = ExtResource("5_8mm7a")
+atlas_coordinates = Vector2i(3, 0)
+metadata/_custom_type_script = "uid://b8avmi6foffyj"
+
+[node name="BlockPart4" type="Sprite2D" parent="NewBlock"]
+position = Vector2(32, 0)
+texture = SubResource("AtlasTexture_nfk4m")
+script = ExtResource("5_8mm7a")
+atlas_coordinates = Vector2i(1, 1)
+metadata/_custom_type_script = "uid://b8avmi6foffyj"
+
+[node name="Timer" type="Timer" parent="."]
 process_callback = 0
 wait_time = 0.25
 autostart = true
 
-[connection signal="timeout" from="BlockSpawner/Timer" to="BlockSpawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="NewBlock" method="_on_timer_timeout"]
