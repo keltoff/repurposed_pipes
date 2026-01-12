@@ -26,17 +26,16 @@ func can_move(dir: Vector2i):
 func write_to_tiles():
 	var loc = my_pos_in_tiles()
 	
-	#%Tiles.set_cell(loc, 0, apply_rotation(atlas_coordinates))
-	%Tiles.set_cell(loc, 0, atlas_coordinates)
+	%Tiles.set_cell(loc, 0, apply_rotation(atlas_coordinates))
+	#%Tiles.set_cell(loc, 0, atlas_coordinates)
 
 func apply_rotation(atlas_coords: Vector2i) -> Vector2i:
-	var turns = int(self.rotation_degrees) % 90
-	var tile_code = atlas_coords.y * 16 + atlas_coords.x
+	var turns = (roundi(self.global_rotation_degrees / 90) + 4) % 4
+	var tile_code = atlas_coords.y * 4 + atlas_coords.x
 
 	# bit rotation
-	var turned_code = (tile_code << turns) & (tile_code >> (4 - turns))
-	
-	return Vector2i(turned_code && 3, turned_code >> 2)
+	var turned_code = 15 & (tile_code << turns) | (tile_code >> (4 - turns))
+	return Vector2i(turned_code & 3, turned_code >> 2)
 
 func my_pos_in_tiles():
 	return %Tiles.local_to_map(%Tiles.to_local(global_position))
