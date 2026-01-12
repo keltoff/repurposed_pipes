@@ -12,12 +12,12 @@ func _process(delta: float) -> void:
 
 
 func move_side():
-	self.stream = AudioStreamWAV.load_from_file("snd/move.wav")
+	self.stream = AudioStreamWAV.load_from_file("snd/drop.wav")
 	self.play()
 
 
 func _on_block_handler_moved_down() -> void:
-	self.stream = AudioStreamWAV.load_from_file("snd/drop.wav")
+	self.stream = AudioStreamWAV.load_from_file("snd/move.wav")
 	self.play()
 
 

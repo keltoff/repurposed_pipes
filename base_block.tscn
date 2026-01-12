@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://deopmijud0ict"]
+
+[ext_resource type="TileSet" uid="uid://fb8aexdd1wvr" path="res://pipe_tile_set.tres" id="1_tis4q"]
+
+[node name="Body" type="Area2D"]
+disable_mode = 1
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_tis4q")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

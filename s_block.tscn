@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw0ev5xhhfsic"]
+
+[ext_resource type="PackedScene" uid="uid://deopmijud0ict" path="res://base_block.tscn" id="1_moqxr"]
+
+[node name="Body" instance=ExtResource("1_moqxr")]
+
+[node name="TileMapLayer" parent="." index="0"]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 48, 2, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0)
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+polygon = PackedVector2Array(0, 32, 0, 64, 64, 64, 64, 32, 96, 32, 96, 0, 32, 0, 32, 32)
