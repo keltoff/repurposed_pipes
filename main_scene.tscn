@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://dredt2euhd4sp"]
+[gd_scene load_steps=12 format=4 uid="uid://dredt2euhd4sp"]
 
 [ext_resource type="Texture2D" uid="uid://b6rrxtk8utjxr" path="res://img/pipes_small.png" id="1_0f027"]
 [ext_resource type="Texture2D" uid="uid://dwtwaudq33xr0" path="res://img/Gold_Border.png" id="1_gyfs4"]
 [ext_resource type="Script" uid="uid://ddiho5nhh5yqw" path="res://block_spawner.gd" id="3_d5x1h"]
+[ext_resource type="Script" uid="uid://c2qcln1dk1qud" path="res://audio_stream_player.gd" id="4_d5x1h"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_gyfs4"]
 tile_data = PackedInt32Array(0, 65537, 0, 1, 65537, 0, 2, 65537, 0, 3, 65537, 0)
@@ -68,25 +69,33 @@ patch_margin_bottom = 4
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 1
 
-[node name="BlockSpawner" type="Node2D" parent="."]
+[node name="BlockHandler" type="Node2D" parent="."]
 position = Vector2(307, 88)
 script = ExtResource("3_d5x1h")
 
-[node name="NewBlock" type="Node2D" parent="BlockSpawner"]
+[node name="NewBlock" type="Node2D" parent="BlockHandler"]
 position = Vector2(1, 5)
 metadata/_edit_group_ = true
 
-[node name="Pipe" type="Sprite2D" parent="BlockSpawner/NewBlock"]
+[node name="Pipe" type="Sprite2D" parent="BlockHandler/NewBlock"]
 texture = SubResource("AtlasTexture_d5x1h")
 
-[node name="Pipe2" type="Sprite2D" parent="BlockSpawner/NewBlock"]
+[node name="Pipe2" type="Sprite2D" parent="BlockHandler/NewBlock"]
 position = Vector2(-32, 32)
 rotation = 3.1415927
 texture = SubResource("AtlasTexture_d5x1h")
 
-[node name="Timer" type="Timer" parent="BlockSpawner"]
+[node name="Timer" type="Timer" parent="BlockHandler"]
 process_callback = 0
 wait_time = 0.25
 autostart = true
 
-[connection signal="timeout" from="BlockSpawner/Timer" to="BlockSpawner" method="_on_timer_timeout"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource("4_d5x1h")
+
+[connection signal="moved_down" from="BlockHandler" to="AudioStreamPlayer" method="_on_block_handler_moved_down"]
+[connection signal="moved_left" from="BlockHandler" to="AudioStreamPlayer" method="_on_block_handler_moved_left"]
+[connection signal="moved_right" from="BlockHandler" to="AudioStreamPlayer" method="_on_block_handler_moved_right"]
+[connection signal="new_block" from="BlockHandler" to="AudioStreamPlayer" method="_on_block_handler_new_block"]
+[connection signal="rotated" from="BlockHandler" to="AudioStreamPlayer" method="_on_block_handler_rotated"]
+[connection signal="timeout" from="BlockHandler/Timer" to="BlockHandler" method="_on_timer_timeout"]
