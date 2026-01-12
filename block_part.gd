@@ -27,13 +27,14 @@ func write_to_tiles():
 	var loc = my_pos_in_tiles()
 	
 	%Tiles.set_cell(loc, 0, apply_rotation(atlas_coordinates))
-	#%Tiles.set_cell(loc, 0, atlas_coordinates)
 
 func apply_rotation(atlas_coords: Vector2i) -> Vector2i:
+	# a bit of magic here - coordinates are also bite flags for pipe ends
+	# x = up, left    y = down, right
+	# rotating the piece is done by bit rotation of the tile code
+	
 	var turns = (roundi(self.global_rotation_degrees / 90) + 4) % 4
 	var tile_code = atlas_coords.y * 4 + atlas_coords.x
-
-	# bit rotation
 	var turned_code = 15 & (tile_code << turns) | (tile_code >> (4 - turns))
 	return Vector2i(turned_code & 3, turned_code >> 2)
 
