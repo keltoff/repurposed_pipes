@@ -3,49 +3,48 @@
 [ext_resource type="Texture2D" uid="uid://cyqb2u5yb6mt0" path="res://img/pipes_atlas.tres" id="1_vdiqd"]
 [ext_resource type="Script" uid="uid://b8avmi6foffyj" path="res://block_part.gd" id="2_hmdic"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u0ygc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4t7vw"]
 atlas = ExtResource("1_vdiqd")
-region = Rect2(32, 32, 32, 32)
+region = Rect2(32, 96, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7th4q"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l87fl"]
 atlas = ExtResource("1_vdiqd")
 region = Rect2(64, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6jybn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7id2"]
 atlas = ExtResource("1_vdiqd")
 region = Rect2(32, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_84odl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hltk"]
 atlas = ExtResource("1_vdiqd")
-region = Rect2(32, 32, 32, 32)
+region = Rect2(96, 32, 32, 32)
 
 [node name="PieceS2" type="Node2D"]
-visible = true
 metadata/_edit_group_ = true
 
 [node name="BlockPart" type="Sprite2D" parent="."]
 position = Vector2(-32, 0)
-texture = SubResource("AtlasTexture_u0ygc")
+texture = SubResource("AtlasTexture_4t7vw")
 script = ExtResource("2_hmdic")
-atlas_coordinates = Vector2i(1, 1)
+atlas_coordinates = Vector2i(1, 3)
 metadata/_custom_type_script = "uid://b8avmi6foffyj"
 
 [node name="BlockPart2" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_7th4q")
+texture = SubResource("AtlasTexture_l87fl")
 script = ExtResource("2_hmdic")
 atlas_coordinates = Vector2i(2, 1)
 metadata/_custom_type_script = "uid://b8avmi6foffyj"
 
 [node name="BlockPart3" type="Sprite2D" parent="."]
 position = Vector2(0, 32)
-texture = SubResource("AtlasTexture_6jybn")
+texture = SubResource("AtlasTexture_k7id2")
 script = ExtResource("2_hmdic")
 atlas_coordinates = Vector2i(1, 2)
 metadata/_custom_type_script = "uid://b8avmi6foffyj"
 
 [node name="BlockPart4" type="Sprite2D" parent="."]
 position = Vector2(32, 32)
-texture = SubResource("AtlasTexture_84odl")
+texture = SubResource("AtlasTexture_4hltk")
 script = ExtResource("2_hmdic")
-atlas_coordinates = Vector2i(1, 1)
+atlas_coordinates = Vector2i(3, 1)
 metadata/_custom_type_script = "uid://b8avmi6foffyj"

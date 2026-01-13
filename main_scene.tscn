@@ -1,12 +1,10 @@
-[gd_scene load_steps=20 format=4 uid="uid://dredt2euhd4sp"]
+[gd_scene load_steps=14 format=4 uid="uid://dredt2euhd4sp"]
 
 [ext_resource type="Texture2D" uid="uid://irq2uedvugdh" path="res://img/pipes_rotated.png" id="1_d5x1h"]
 [ext_resource type="Texture2D" uid="uid://dwtwaudq33xr0" path="res://img/Gold_Border.png" id="1_gyfs4"]
 [ext_resource type="Texture2D" uid="uid://dm52qgs2a4wdl" path="res://img/pipes_rotated_full.png" id="3_66tet"]
 [ext_resource type="Script" uid="uid://craoq4w1o3i31" path="res://tiles.gd" id="4_7ycvg"]
-[ext_resource type="Texture2D" uid="uid://cyqb2u5yb6mt0" path="res://img/pipes_atlas.tres" id="4_hq1ik"]
 [ext_resource type="Script" uid="uid://cpy82sfmefxmw" path="res://new_block.gd" id="4_nfk4m"]
-[ext_resource type="Script" uid="uid://b8avmi6foffyj" path="res://block_part.gd" id="5_8mm7a"]
 [ext_resource type="Script" uid="uid://ddylbgh304wo0" path="res://piece_queue.gd" id="6_7ycvg"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_gyfs4"]
@@ -67,22 +65,6 @@ pattern_1 = SubResource("TileMapPattern_d5x1h")
 pattern_2 = SubResource("TileMapPattern_8mm7a")
 pattern_3 = SubResource("TileMapPattern_hq1ik")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hq1ik"]
-atlas = ExtResource("4_hq1ik")
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nfk4m"]
-atlas = ExtResource("4_hq1ik")
-region = Rect2(0, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_66tet"]
-atlas = ExtResource("4_hq1ik")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ycvg"]
-atlas = ExtResource("4_hq1ik")
-region = Rect2(32, 32, 32, 32)
-
 [node name="Node2D" type="Node2D"]
 
 [node name="Frame" type="NinePatchRect" parent="."]
@@ -114,33 +96,6 @@ position = Vector2(112, 470)
 position = Vector2(306, 84)
 script = ExtResource("4_nfk4m")
 metadata/_edit_group_ = true
-
-[node name="BlockPart" type="Sprite2D" parent="NewBlock"]
-position = Vector2(-32, 32)
-texture = SubResource("AtlasTexture_hq1ik")
-script = ExtResource("5_8mm7a")
-atlas_coordinates = Vector2i(1, 1)
-metadata/_custom_type_script = "uid://b8avmi6foffyj"
-
-[node name="BlockPart2" type="Sprite2D" parent="NewBlock"]
-position = Vector2(0, 32)
-texture = SubResource("AtlasTexture_nfk4m")
-script = ExtResource("5_8mm7a")
-atlas_coordinates = Vector2i(0, 3)
-metadata/_custom_type_script = "uid://b8avmi6foffyj"
-
-[node name="BlockPart3" type="Sprite2D" parent="NewBlock"]
-texture = SubResource("AtlasTexture_66tet")
-script = ExtResource("5_8mm7a")
-atlas_coordinates = Vector2i(3, 0)
-metadata/_custom_type_script = "uid://b8avmi6foffyj"
-
-[node name="BlockPart4" type="Sprite2D" parent="NewBlock"]
-position = Vector2(32, 0)
-texture = SubResource("AtlasTexture_7ycvg")
-script = ExtResource("5_8mm7a")
-atlas_coordinates = Vector2i(1, 1)
-metadata/_custom_type_script = "uid://b8avmi6foffyj"
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0

@@ -23,6 +23,10 @@ func _input(_event: InputEvent) -> void:
 		try_rotate()
 
 func _on_timer_timeout() -> void:
+	if get_child_count() == 0:
+		get_new_piece()
+		return
+		
 	if can_all_move(Vector2i.DOWN):
 		grid_position += Vector2i.DOWN
 	else:
@@ -30,17 +34,6 @@ func _on_timer_timeout() -> void:
 		for child in get_children():
 			child.write_to_tiles()
 			child.queue_free()
-		
-		
-		var new_piece = %PieceQueue.pop_piece()
-		for child in new_piece.get_children():
-			child.owner = null
-			child.reparent(self, false)
-		
-		new_piece.queue_free()
-		
-		rotation = 0.
-		grid_position = Vector2i(0, 0)
 
 func try_rotate():
 	var original_rotation = rotation_degrees
@@ -53,6 +46,17 @@ func try_rotate():
 			return
 	
 	rotation_degrees = original_rotation
+
+func get_new_piece():
+	var new_piece = %PieceQueue.pop_piece()
+	for child in new_piece.get_children():
+		child.owner = null
+		child.reparent(self, false)
+	
+	new_piece.queue_free()
+	
+	rotation = 0.
+	grid_position = Vector2i(0, 0)
 	
 func can_all_move(dir: Vector2i):
 	for child in get_children():

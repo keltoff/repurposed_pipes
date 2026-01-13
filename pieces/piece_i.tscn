@@ -3,49 +3,48 @@
 [ext_resource type="Texture2D" uid="uid://cyqb2u5yb6mt0" path="res://img/pipes_atlas.tres" id="1_ft8wt"]
 [ext_resource type="Script" uid="uid://b8avmi6foffyj" path="res://block_part.gd" id="2_w0jns"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8mm7a"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ft8wt"]
+atlas = ExtResource("1_ft8wt")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0jns"]
 atlas = ExtResource("1_ft8wt")
 region = Rect2(32, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qwutr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cmuk"]
 atlas = ExtResource("1_ft8wt")
 region = Rect2(32, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_671wp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhpqx"]
 atlas = ExtResource("1_ft8wt")
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mo76n"]
-atlas = ExtResource("1_ft8wt")
-region = Rect2(32, 32, 32, 32)
+region = Rect2(96, 96, 32, 32)
 
 [node name="PieceI" type="Node2D"]
-visible = true
 metadata/_edit_group_ = true
 
 [node name="BlockPart" type="Sprite2D" parent="."]
 position = Vector2(-32, 0)
-texture = SubResource("AtlasTexture_8mm7a")
+texture = SubResource("AtlasTexture_ft8wt")
 script = ExtResource("2_w0jns")
-atlas_coordinates = Vector2i(1, 1)
+atlas_coordinates = Vector2i(3, 3)
 metadata/_custom_type_script = "uid://b8avmi6foffyj"
 
 [node name="BlockPart2" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_qwutr")
+texture = SubResource("AtlasTexture_w0jns")
 script = ExtResource("2_w0jns")
 atlas_coordinates = Vector2i(1, 1)
 metadata/_custom_type_script = "uid://b8avmi6foffyj"
 
 [node name="BlockPart3" type="Sprite2D" parent="."]
 position = Vector2(32, 0)
-texture = SubResource("AtlasTexture_671wp")
+texture = SubResource("AtlasTexture_1cmuk")
 script = ExtResource("2_w0jns")
 atlas_coordinates = Vector2i(1, 1)
 metadata/_custom_type_script = "uid://b8avmi6foffyj"
 
 [node name="BlockPart4" type="Sprite2D" parent="."]
 position = Vector2(64, 0)
-texture = SubResource("AtlasTexture_mo76n")
+texture = SubResource("AtlasTexture_fhpqx")
 script = ExtResource("2_w0jns")
-atlas_coordinates = Vector2i(1, 1)
+atlas_coordinates = Vector2i(3, 3)
 metadata/_custom_type_script = "uid://b8avmi6foffyj"
