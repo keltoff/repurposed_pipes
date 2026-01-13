@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnwn1vb0c7s88"]
+
+[ext_resource type="Texture2D" uid="uid://cyqb2u5yb6mt0" path="res://img/pipes_atlas.tres" id="1_ft8wt"]
+[ext_resource type="Script" uid="uid://b8avmi6foffyj" path="res://block_part.gd" id="2_w0jns"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mm7a"]
+atlas = ExtResource("1_ft8wt")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwutr"]
+atlas = ExtResource("1_ft8wt")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_671wp"]
+atlas = ExtResource("1_ft8wt")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mo76n"]
+atlas = ExtResource("1_ft8wt")
+region = Rect2(32, 32, 32, 32)
+
+[node name="PieceI" type="Node2D"]
+visible = true
+metadata/_edit_group_ = true
+
+[node name="BlockPart" type="Sprite2D" parent="."]
+position = Vector2(-32, 0)
+texture = SubResource("AtlasTexture_8mm7a")
+script = ExtResource("2_w0jns")
+atlas_coordinates = Vector2i(1, 1)
+metadata/_custom_type_script = "uid://b8avmi6foffyj"
+
+[node name="BlockPart2" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_qwutr")
+script = ExtResource("2_w0jns")
+atlas_coordinates = Vector2i(1, 1)
+metadata/_custom_type_script = "uid://b8avmi6foffyj"
+
+[node name="BlockPart3" type="Sprite2D" parent="."]
+position = Vector2(32, 0)
+texture = SubResource("AtlasTexture_671wp")
+script = ExtResource("2_w0jns")
+atlas_coordinates = Vector2i(1, 1)
+metadata/_custom_type_script = "uid://b8avmi6foffyj"
+
+[node name="BlockPart4" type="Sprite2D" parent="."]
+position = Vector2(64, 0)
+texture = SubResource("AtlasTexture_mo76n")
+script = ExtResource("2_w0jns")
+atlas_coordinates = Vector2i(1, 1)
+metadata/_custom_type_script = "uid://b8avmi6foffyj"

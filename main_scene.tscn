@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cyqb2u5yb6mt0" path="res://img/pipes_atlas.tres" id="4_hq1ik"]
 [ext_resource type="Script" uid="uid://cpy82sfmefxmw" path="res://new_block.gd" id="4_nfk4m"]
 [ext_resource type="Script" uid="uid://b8avmi6foffyj" path="res://block_part.gd" id="5_8mm7a"]
+[ext_resource type="Script" uid="uid://ddylbgh304wo0" path="res://piece_queue.gd" id="6_7ycvg"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_gyfs4"]
 tile_data = PackedInt32Array(0, 65537, 0, 1, 65537, 0, 2, 65537, 0, 3, 65537, 0)
@@ -47,25 +48,20 @@ pattern_1 = SubResource("TileMapPattern_d5x1h")
 pattern_2 = SubResource("TileMapPattern_8mm7a")
 pattern_3 = SubResource("TileMapPattern_hq1ik")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_66tet"]
-resource_name = "Pipes"
+[sub_resource type="AtlasTexture" id="AtlasTexture_hq1ik"]
 atlas = ExtResource("4_hq1ik")
 region = Rect2(32, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ycvg"]
-resource_name = "Pipes"
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfk4m"]
 atlas = ExtResource("4_hq1ik")
 region = Rect2(0, 96, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wr18j"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_66tet"]
 atlas = ExtResource("4_hq1ik")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8mm7a"]
-load_path = "res://.godot/imported/pipes_rotated.png-2d2119b0339a8211ff4c13c0e4f426a4.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nfk4m"]
-atlas = SubResource("CompressedTexture2D_8mm7a")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ycvg"]
+atlas = ExtResource("4_hq1ik")
 region = Rect2(32, 32, 32, 32)
 
 [node name="Node2D" type="Node2D"]
@@ -97,27 +93,27 @@ script = ExtResource("4_nfk4m")
 
 [node name="BlockPart" type="Sprite2D" parent="NewBlock"]
 position = Vector2(-32, 32)
-texture = SubResource("AtlasTexture_66tet")
+texture = SubResource("AtlasTexture_hq1ik")
 script = ExtResource("5_8mm7a")
 atlas_coordinates = Vector2i(1, 1)
 metadata/_custom_type_script = "uid://b8avmi6foffyj"
 
 [node name="BlockPart2" type="Sprite2D" parent="NewBlock"]
 position = Vector2(0, 32)
-texture = SubResource("AtlasTexture_7ycvg")
+texture = SubResource("AtlasTexture_nfk4m")
 script = ExtResource("5_8mm7a")
 atlas_coordinates = Vector2i(0, 3)
 metadata/_custom_type_script = "uid://b8avmi6foffyj"
 
 [node name="BlockPart3" type="Sprite2D" parent="NewBlock"]
-texture = SubResource("AtlasTexture_wr18j")
+texture = SubResource("AtlasTexture_66tet")
 script = ExtResource("5_8mm7a")
 atlas_coordinates = Vector2i(3, 0)
 metadata/_custom_type_script = "uid://b8avmi6foffyj"
 
 [node name="BlockPart4" type="Sprite2D" parent="NewBlock"]
 position = Vector2(32, 0)
-texture = SubResource("AtlasTexture_nfk4m")
+texture = SubResource("AtlasTexture_7ycvg")
 script = ExtResource("5_8mm7a")
 atlas_coordinates = Vector2i(1, 1)
 metadata/_custom_type_script = "uid://b8avmi6foffyj"
@@ -126,5 +122,21 @@ metadata/_custom_type_script = "uid://b8avmi6foffyj"
 process_callback = 0
 wait_time = 0.25
 autostart = true
+
+[node name="PieceQueue" type="NinePatchRect" parent="."]
+unique_name_in_owner = true
+offset_left = 610.0
+offset_top = 45.0
+offset_right = 1618.0
+offset_bottom = 243.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_gyfs4")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+script = ExtResource("6_7ycvg")
 
 [connection signal="timeout" from="Timer" to="NewBlock" method="_on_timer_timeout"]

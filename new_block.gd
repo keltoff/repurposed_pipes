@@ -1,9 +1,17 @@
 extends Node2D
 
-var grid_position = Vector2i(0, 0)
+@onready
+var tilemap = %Tiles
+
+var grid_position : Vector2i :
+	set(x):
+		grid_position = x
+		global_position = tilemap.to_global(tilemap.map_to_local(grid_position))
+
+#func _init() -> void:
+	#grid_position = Vector2i(0, 0)
 
 func _input(_event: InputEvent) -> void:
-	global_position = %Tiles.to_global(%Tiles.map_to_local(grid_position))
 	
 	if Input.is_action_just_pressed("Left") and can_all_move(Vector2i.LEFT):
 		grid_position += Vector2i.LEFT
@@ -13,31 +21,30 @@ func _input(_event: InputEvent) -> void:
 		grid_position += Vector2i.DOWN
 	if Input.is_action_just_pressed("Rotate"):
 		rotation_degrees += 90
-		#for child in get_children():
-			#child.write_to_tiles()
-	
-	global_position = %Tiles.to_global(%Tiles.map_to_local(grid_position))
 
 func _on_timer_timeout() -> void:
 	if can_all_move(Vector2i.DOWN):
 		grid_position += Vector2i.DOWN
-		global_position = %Tiles.to_global(%Tiles.map_to_local(grid_position))
 	else:
 		# we hit terrain
 		for child in get_children():
 			child.write_to_tiles()
+			child.queue_free()
 		
-		# And reset
-		grid_position = Vector2i(0, 0)
-		global_position = %Tiles.to_global(%Tiles.map_to_local(grid_position))
+		
+		var new_piece = %PieceQueue.pop_piece()
+		for child in new_piece.get_children():
+			child.owner = null
+			child.reparent(self, false)
+		
+		new_piece.queue_free()
+		
 		rotation = 0.
-		# TODO: empty, load new blocks
-			
+		grid_position = Vector2i(0, 0)
 
 func can_all_move(dir: Vector2i):
 	for child in get_children():
 		if not child.can_move(dir):
 			return false
 	
-	print()
 	return true

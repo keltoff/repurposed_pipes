@@ -27,8 +27,7 @@ func can_move(dir: Vector2i):
 
 func write_to_tiles():
 	var loc = my_pos_in_tiles()
-	
-	%Tiles.set_cell(loc, 0, apply_rotation(atlas_coordinates))
+	tilemap().set_cell(loc, 0, apply_rotation(atlas_coordinates))
 
 func apply_rotation(atlas_coords: Vector2i) -> Vector2i:
 	# a bit of magic here - coordinates are also bite flags for pipe ends
@@ -40,9 +39,12 @@ func apply_rotation(atlas_coords: Vector2i) -> Vector2i:
 	var turned_code = 15 & (tile_code << turns) | (tile_code >> (4 - turns))
 	return Vector2i(turned_code & 3, turned_code >> 2)
 
+func tilemap():
+	return get_parent().tilemap
+
 func my_pos_in_tiles():
-	return %Tiles.local_to_map(%Tiles.to_local(global_position))
+	return tilemap().local_to_map(tilemap().to_local(global_position))
 
 # TODO move to Tiles
 func is_tile_free(loc: Vector2i):
-	return %Tiles.get_cell_atlas_coords(loc) == Vector2i(-1, -1)
+	return tilemap().get_cell_atlas_coords(loc) == Vector2i(-1, -1)
