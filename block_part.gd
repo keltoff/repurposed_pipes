@@ -15,15 +15,11 @@ func _init() -> void:
 	texture = AtlasTexture.new()
 	texture.atlas = load("res://img/pipes_atlas.tres")
 	texture.region.size = Vector2(32, 32)
-	#texture.region.position = Vector2(0, 0)
 	atlas_coordinates = Vector2i(1, 1)
-
-func is_free():
-	return is_tile_free(my_pos_in_tiles())
 
 func can_move(dir: Vector2i):
 	var new_loc = my_pos_in_tiles() + dir
-	return is_tile_free(new_loc)
+	return tilemap().is_tile_free(new_loc)
 
 func write_to_tiles():
 	var loc = my_pos_in_tiles()
@@ -44,7 +40,3 @@ func tilemap():
 
 func my_pos_in_tiles():
 	return tilemap().local_to_map(tilemap().to_local(global_position))
-
-# TODO move to Tiles
-func is_tile_free(loc: Vector2i):
-	return tilemap().get_cell_atlas_coords(loc) == Vector2i(-1, -1)

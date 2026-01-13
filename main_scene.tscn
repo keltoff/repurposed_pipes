@@ -1,7 +1,9 @@
-[gd_scene load_steps=17 format=4 uid="uid://dredt2euhd4sp"]
+[gd_scene load_steps=20 format=4 uid="uid://dredt2euhd4sp"]
 
 [ext_resource type="Texture2D" uid="uid://irq2uedvugdh" path="res://img/pipes_rotated.png" id="1_d5x1h"]
 [ext_resource type="Texture2D" uid="uid://dwtwaudq33xr0" path="res://img/Gold_Border.png" id="1_gyfs4"]
+[ext_resource type="Texture2D" uid="uid://dm52qgs2a4wdl" path="res://img/pipes_rotated_full.png" id="3_66tet"]
+[ext_resource type="Script" uid="uid://craoq4w1o3i31" path="res://tiles.gd" id="4_7ycvg"]
 [ext_resource type="Texture2D" uid="uid://cyqb2u5yb6mt0" path="res://img/pipes_atlas.tres" id="4_hq1ik"]
 [ext_resource type="Script" uid="uid://cpy82sfmefxmw" path="res://new_block.gd" id="4_nfk4m"]
 [ext_resource type="Script" uid="uid://b8avmi6foffyj" path="res://block_part.gd" id="5_8mm7a"]
@@ -36,6 +38,22 @@ texture_region_size = Vector2i(32, 32)
 2:3/0 = 0
 3:3/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wr18j"]
+resource_name = "PipesFull"
+texture = ExtResource("3_66tet")
+texture_region_size = Vector2i(32, 32)
+3:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_gyfs4"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
@@ -43,6 +61,7 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_8mm7a")
+sources/1 = SubResource("TileSetAtlasSource_wr18j")
 pattern_0 = SubResource("TileMapPattern_gyfs4")
 pattern_1 = SubResource("TileMapPattern_d5x1h")
 pattern_2 = SubResource("TileMapPattern_8mm7a")
@@ -84,12 +103,17 @@ axis_stretch_vertical = 1
 [node name="Tiles" type="TileMapLayer" parent="Frame"]
 unique_name_in_owner = true
 position = Vector2(190, 35)
-tile_map_data = PackedByteArray("AAD5////AAACAAIAAAD5/wAAAAACAAIAAAD5/wEAAAACAAIAAAD5/wIAAAACAAIAAAD5/wMAAAADAAMAAAD5/wQAAAACAAIAAAD5/wUAAAACAAIAAAD5/wYAAAACAAIAAAD5/wcAAAACAAIAAAD5/wkAAAACAAIAAAD5/woAAAACAAIAAAD5/wgAAAACAAIAAAAHAP//AAACAAIAAAAHAAAAAAACAAIAAAAHAAEAAAACAAIAAAAHAAIAAAACAAIAAAAHAAQAAAACAAIAAAAHAAUAAAACAAIAAAAHAAYAAAACAAIAAAAHAAcAAAACAAIAAAAHAAgAAAACAAIAAAAHAAkAAAACAAIAAAAHAAoAAAACAAIAAAAHAAsAAAACAAIAAAAHAAwAAAACAAIAAAAHAA0AAAACAAIAAAD5/wsAAAACAAIAAAD5/wwAAAACAAIAAAD5/w0AAAACAAIAAAD6/w4AAAABAAEAAAD7/w4AAAABAAEAAAD8/w4AAAABAAEAAAD9/w4AAAABAAEAAAD+/w4AAAABAAEAAAD//w4AAAADAAMAAAAAAA4AAAABAAEAAAABAA4AAAABAAEAAAACAA4AAAABAAEAAAADAA4AAAADAAMAAAAEAA4AAAABAAEAAAAFAA4AAAABAAEAAAAGAA4AAAABAAEAAAD5/w4AAAABAAIAAAAHAA4AAAAAAAMAAAAHAAMAAAADAAMAAAA=")
+tile_map_data = PackedByteArray("AAD5////AAACAAIAAAD5/wAAAAACAAIAAAD5/wEAAAACAAIAAAD5/wIAAAACAAIAAAD5/wMAAAABAAEAAAD5/wQAAAACAAIAAAD5/wUAAAACAAIAAAD5/wYAAAACAAIAAAD5/wcAAAACAAIAAAD5/wkAAAACAAIAAAD5/woAAAACAAIAAAD5/wgAAAACAAIAAAAHAP//AAACAAIAAAAHAAAAAAACAAIAAAAHAAEAAAACAAIAAAAHAAIAAAACAAIAAAAHAAQAAAACAAIAAAAHAAUAAAACAAIAAAAHAAYAAAACAAIAAAAHAAcAAAACAAIAAAAHAAgAAAACAAIAAAAHAAkAAAACAAIAAAAHAAoAAAACAAIAAAAHAAsAAAACAAIAAAAHAAwAAAACAAIAAAAHAA0AAAACAAIAAAD5/wsAAAACAAIAAAD5/wwAAAACAAIAAAD5/w0AAAACAAIAAAD6/w4AAAABAAEAAAD7/w4AAAABAAEAAAD8/w4AAAABAAEAAAD9/w4AAAABAAEAAAD+/w4AAAABAAEAAAAAAA4AAAABAAEAAAABAA4AAAABAAEAAAACAA4AAAABAAEAAAADAA4AAAACAAIAAAAEAA4AAAABAAEAAAAFAA4AAAABAAEAAAAGAA4AAAABAAEAAAD5/w4AAAABAAIAAAAHAA4AAAAAAAMAAAAHAAMAAAABAAEAAAD//w4AAAABAAEAAAA=")
 tile_set = SubResource("TileSet_gyfs4")
+script = ExtResource("4_7ycvg")
+
+[node name="WaterSource" type="Node2D" parent="Frame/Tiles"]
+position = Vector2(112, 470)
 
 [node name="NewBlock" type="Node2D" parent="."]
 position = Vector2(306, 84)
 script = ExtResource("4_nfk4m")
+metadata/_edit_group_ = true
 
 [node name="BlockPart" type="Sprite2D" parent="NewBlock"]
 position = Vector2(-32, 32)
@@ -139,4 +163,5 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 script = ExtResource("6_7ycvg")
 
+[connection signal="timeout" from="Timer" to="Frame/Tiles" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="NewBlock" method="_on_timer_timeout"]
