@@ -20,7 +20,7 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Drop") and can_all_move(Vector2i.DOWN):
 		grid_position += Vector2i.DOWN
 	if Input.is_action_just_pressed("Rotate"):
-		rotation_degrees += 90
+		try_rotate()
 
 func _on_timer_timeout() -> void:
 	if can_all_move(Vector2i.DOWN):
@@ -42,6 +42,18 @@ func _on_timer_timeout() -> void:
 		rotation = 0.
 		grid_position = Vector2i(0, 0)
 
+func try_rotate():
+	var original_rotation = rotation_degrees
+	
+	rotation_degrees += 90
+	
+	for correction in [Vector2i.ZERO, Vector2i.LEFT, Vector2i.RIGHT]:
+		if can_all_move(correction):
+			grid_position += correction
+			return
+	
+	rotation_degrees = original_rotation
+	
 func can_all_move(dir: Vector2i):
 	for child in get_children():
 		if not child.can_move(dir):

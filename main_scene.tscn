@@ -120,7 +120,7 @@ metadata/_custom_type_script = "uid://b8avmi6foffyj"
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 0.25
+wait_time = 0.75
 autostart = true
 
 [node name="PieceQueue" type="NinePatchRect" parent="."]
