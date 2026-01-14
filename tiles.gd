@@ -4,6 +4,8 @@ var ID_EMPTY = 0
 var ID_WATER = 1
 var COORDS_NOTHING = Vector2i(-1, -1)
 
+var x_range = range(-6, 7)
+
 func is_tile_free(loc: Vector2i):
 	return get_cell_atlas_coords(loc) == COORDS_NOTHING
 	
@@ -50,3 +52,25 @@ func has_connection(loc: Vector2i, dir: Vector2i):
 
 func _on_timer_timeout() -> void:
 	process_water()
+
+func check_for_line_removed(lines: Array):
+	lines.sort()
+	
+	for y in lines:
+		if is_line_full(y):
+			remove_line(y)
+
+func is_line_full(y: int):
+	for x in x_range:
+		if is_tile_free(Vector2i(x, y)):
+			return false
+	
+	return true
+
+func remove_line(y0: int):
+	for y in range(y0, 0, -1):
+		for x in x_range:
+			var loc = Vector2i(x, y-1)
+			var id = get_cell_source_id(loc)
+			var shape = get_cell_atlas_coords(loc)
+			set_cell(Vector2i(x, y), id, shape)

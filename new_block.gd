@@ -14,11 +14,7 @@ var grid_position : Vector2i :
 		grid_position = x
 		global_position = tilemap.to_global(tilemap.map_to_local(grid_position))
 
-#func _init() -> void:
-	#grid_position = Vector2i(0, 0)
-
 func _input(_event: InputEvent) -> void:
-	
 	if Input.is_action_just_pressed("Left") and can_all_move(Vector2i.LEFT):
 		grid_position += Vector2i.LEFT
 		block_moved_left.emit()
@@ -41,11 +37,18 @@ func _on_timer_timeout() -> void:
 		block_moved_down.emit()
 	else:
 		# we hit terrain
+		var affected_rows = []
+		
 		for child in get_children():
 			child.write_to_tiles()
 			child.queue_free()
 			block_landed.emit()
-
+			
+			var y = child.my_pos_in_tiles().y
+			affected_rows.append(y)
+	
+		tilemap.check_for_line_removed(affected_rows)
+				
 func try_rotate():
 	var original_rotation = rotation_degrees
 
@@ -67,7 +70,7 @@ func get_new_piece():
 
 	new_piece.queue_free()
 
-	rotation = 0.
+	rotation_degrees = 90.
 	grid_position = Vector2i(0, 0)
 
 func can_all_move(dir: Vector2i):
