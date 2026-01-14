@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dredt2euhd4sp"]
+[gd_scene load_steps=27 format=4 uid="uid://dredt2euhd4sp"]
 
 [ext_resource type="Texture2D" uid="uid://irq2uedvugdh" path="res://img/pipes_rotated.png" id="1_d5x1h"]
 [ext_resource type="Texture2D" uid="uid://dwtwaudq33xr0" path="res://img/Gold_Border.png" id="1_gyfs4"]
@@ -10,6 +10,15 @@
 [ext_resource type="AudioStream" uid="uid://benekohdh3h87" path="res://sfx/body hits metal 12.wav" id="8_7ycvg"]
 [ext_resource type="AudioStream" uid="uid://cns7s3v5ixx2e" path="res://sfx/bat being held 5.wav" id="9_wr18j"]
 [ext_resource type="Script" uid="uid://boevokyyt7w8w" path="res://music_player.gd" id="10_wr18j"]
+[ext_resource type="AudioStream" uid="uid://biqjv6r543dxo" path="res://music/Patreon Challenge 06.ogg" id="11_6jybn"]
+[ext_resource type="AudioStream" uid="uid://cpkyk4dyf2yr3" path="res://music/Sketchbook 2024-03-30_01_L02.ogg" id="12_84odl"]
+[ext_resource type="AudioStream" uid="uid://b0kpxtwmh6wan" path="res://music/Sketchbook 2025-11-13.ogg" id="13_ak604"]
+[ext_resource type="AudioStream" uid="uid://djq0j56kvii0j" path="res://music/Sketchbook 2025-11-12.ogg" id="14_vimvf"]
+[ext_resource type="AudioStream" uid="uid://bs7kkliwsdr4n" path="res://music/VGMA Challenge 08.ogg" id="15_ghshe"]
+[ext_resource type="AudioStream" uid="uid://bjvp2vkq454kj" path="res://music/Sketchbook 2025-12-14 LOOP.ogg" id="16_fv2he"]
+[ext_resource type="AudioStream" uid="uid://2bc4g3jc1hwa" path="res://music/VGMA Challenge 14.ogg" id="17_5smuj"]
+[ext_resource type="AudioStream" uid="uid://cfo6b8ypb5d2u" path="res://music/VGMA Challenge 20.ogg" id="18_y5ved"]
+[ext_resource type="AudioStream" uid="uid://bj2yjnx8hd0nv" path="res://music/Patreon Challenge 13.ogg" id="19_kv3aw"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_gyfs4"]
 tile_data = PackedInt32Array(0, 65537, 0, 1, 65537, 0, 2, 65537, 0, 3, 65537, 0)
@@ -138,7 +147,9 @@ max_polyphony = 4
 [node name="SFXPlayer3" type="AudioStreamPlayer" parent="SFXManager"]
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -6.0
 script = ExtResource("10_wr18j")
+songs = Array[AudioStream]([ExtResource("11_6jybn"), ExtResource("12_84odl"), ExtResource("13_ak604"), ExtResource("14_vimvf"), ExtResource("15_ghshe"), ExtResource("16_fv2he"), ExtResource("17_5smuj"), ExtResource("18_y5ved"), ExtResource("19_kv3aw")])
 
 [connection signal="block_landed" from="NewBlock" to="SFXManager" method="_on_new_block_block_landed"]
 [connection signal="block_moved_down" from="NewBlock" to="SFXManager" method="_on_new_block_block_moved_down"]
