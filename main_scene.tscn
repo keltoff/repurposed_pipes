@@ -158,3 +158,4 @@ songs = Array[AudioStream]([ExtResource("11_6jybn"), ExtResource("12_84odl"), Ex
 [connection signal="block_rotated" from="NewBlock" to="SFXManager" method="_on_new_block_block_rotated"]
 [connection signal="timeout" from="Timer" to="Frame/Tiles" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="NewBlock" method="_on_timer_timeout"]
+[connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]
