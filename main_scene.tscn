@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dredt2euhd4sp"]
+[gd_scene load_steps=18 format=4 uid="uid://dredt2euhd4sp"]
 
 [ext_resource type="Texture2D" uid="uid://irq2uedvugdh" path="res://img/pipes_rotated.png" id="1_d5x1h"]
 [ext_resource type="Texture2D" uid="uid://dwtwaudq33xr0" path="res://img/Gold_Border.png" id="1_gyfs4"]
@@ -6,6 +6,10 @@
 [ext_resource type="Script" uid="uid://craoq4w1o3i31" path="res://tiles.gd" id="4_7ycvg"]
 [ext_resource type="Script" uid="uid://cpy82sfmefxmw" path="res://new_block.gd" id="4_nfk4m"]
 [ext_resource type="Script" uid="uid://ddylbgh304wo0" path="res://piece_queue.gd" id="6_7ycvg"]
+[ext_resource type="Script" uid="uid://dlhd427q6jlxj" path="res://sfx_manager.gd" id="6_nfk4m"]
+[ext_resource type="AudioStream" uid="uid://benekohdh3h87" path="res://sfx/body hits metal 12.wav" id="8_7ycvg"]
+[ext_resource type="AudioStream" uid="uid://cns7s3v5ixx2e" path="res://sfx/bat being held 5.wav" id="9_wr18j"]
+[ext_resource type="Script" uid="uid://boevokyyt7w8w" path="res://music_player.gd" id="10_wr18j"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_gyfs4"]
 tile_data = PackedInt32Array(0, 65537, 0, 1, 65537, 0, 2, 65537, 0, 3, 65537, 0)
@@ -118,5 +122,28 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 script = ExtResource("6_7ycvg")
 
+[node name="SFXManager" type="Node" parent="."]
+script = ExtResource("6_nfk4m")
+moved_left_snd = ExtResource("9_wr18j")
+moved_right_snd = ExtResource("9_wr18j")
+moved_down_snd = ExtResource("9_wr18j")
+rotated_snd = ExtResource("9_wr18j")
+landed_snd = ExtResource("8_7ycvg")
+
+[node name="SFXPlayer1" type="AudioStreamPlayer" parent="SFXManager"]
+max_polyphony = 4
+
+[node name="SFXPlayer2" type="AudioStreamPlayer" parent="SFXManager"]
+
+[node name="SFXPlayer3" type="AudioStreamPlayer" parent="SFXManager"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource("10_wr18j")
+
+[connection signal="block_landed" from="NewBlock" to="SFXManager" method="_on_new_block_block_landed"]
+[connection signal="block_moved_down" from="NewBlock" to="SFXManager" method="_on_new_block_block_moved_down"]
+[connection signal="block_moved_left" from="NewBlock" to="SFXManager" method="_on_new_block_block_moved_left"]
+[connection signal="block_moved_right" from="NewBlock" to="SFXManager" method="_on_new_block_block_moved_right"]
+[connection signal="block_rotated" from="NewBlock" to="SFXManager" method="_on_new_block_block_rotated"]
 [connection signal="timeout" from="Timer" to="Frame/Tiles" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="NewBlock" method="_on_timer_timeout"]

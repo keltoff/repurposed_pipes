@@ -1,0 +1,45 @@
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://bri1ec6vh128y"]
+
+[ext_resource type="Texture2D" uid="uid://b6rrxtk8utjxr" path="res://img/pipes_small.png" id="1_ryrg5"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_gyfs4"]
+tile_data = PackedInt32Array(0, 65537, 0, 1, 65537, 0, 2, 65537, 0, 3, 65537, 0)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_d5x1h"]
+tile_data = PackedInt32Array(65536, 65537, 0, 1, 1, 0, 65537, 1, 805306368, 2, 65537, 0)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_8mm7a"]
+tile_data = PackedInt32Array(65536, 65537, 0, 1, 65537, 1610612736, 65537, 131073, 805306368, 65538, 65537, 0)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_hq1ik"]
+tile_data = PackedInt32Array(0, 196609, 0, 65536, 196609, 0, 1, 196609, 0, 65537, 196609, 0)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2c62f"]
+texture = ExtResource("1_ryrg5")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:0/0/custom_data_0 = "BR"
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0/custom_data_0 = "LR"
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:0/0/custom_data_0 = "BLR"
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+3:0/0/custom_data_0 = "TBLR"
+
+[resource]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+custom_data_layer_0/name = ""
+custom_data_layer_0/type = 4
+sources/1 = SubResource("TileSetAtlasSource_2c62f")
+pattern_0 = SubResource("TileMapPattern_gyfs4")
+pattern_1 = SubResource("TileMapPattern_d5x1h")
+pattern_2 = SubResource("TileMapPattern_8mm7a")
+pattern_3 = SubResource("TileMapPattern_hq1ik")
