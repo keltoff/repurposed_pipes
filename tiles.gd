@@ -1,10 +1,14 @@
 extends TileMapLayer
 
+signal lines_removed
+
 var ID_EMPTY = 0
 var ID_WATER = 1
 var COORDS_NOTHING = Vector2i(-1, -1)
 
 var x_range = range(-6, 7)
+
+var boom_line = load("res://boom_line.tscn")
 
 func is_tile_free(loc: Vector2i):
 	return get_cell_atlas_coords(loc) == COORDS_NOTHING
@@ -56,10 +60,17 @@ func _on_timer_timeout() -> void:
 func check_for_line_removed(lines: Array):
 	lines.sort()
 	
+	var removed = 0
+	
 	for y in lines:
 		if is_line_full(y):
 			remove_line(y)
-
+			line_flash_effect(y)
+			removed += 1
+	
+	if removed > 0:
+		lines_removed.emit(removed)
+		
 func is_line_full(y: int):
 	for x in x_range:
 		if is_tile_free(Vector2i(x, y)):
@@ -74,3 +85,9 @@ func remove_line(y0: int):
 			var id = get_cell_source_id(loc)
 			var shape = get_cell_atlas_coords(loc)
 			set_cell(Vector2i(x, y), id, shape)
+
+func line_flash_effect(line: int):
+	var flash = boom_line.instantiate()
+	flash.position = map_to_local(Vector2i(0, line))
+	add_child(flash)
+	

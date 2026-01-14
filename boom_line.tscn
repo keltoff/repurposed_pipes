@@ -1,0 +1,111 @@
+[gd_scene load_steps=11 format=3 uid="uid://31t8tvk2d2pp"]
+
+[ext_resource type="Script" uid="uid://bcwwnsq3ecjtn" path="res://boom_line.gd" id="1_qwk0f"]
+[ext_resource type="Texture2D" uid="uid://bmgopd1rigd5s" path="res://img/BomberManEffect.png" id="2_mj7da"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghshe"]
+atlas = ExtResource("2_mj7da")
+region = Rect2(0, 50, 48, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv2he"]
+atlas = ExtResource("2_mj7da")
+region = Rect2(48, 50, 48, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5smuj"]
+atlas = ExtResource("2_mj7da")
+region = Rect2(96, 50, 48, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5ved"]
+atlas = ExtResource("2_mj7da")
+region = Rect2(144, 50, 48, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kv3aw"]
+atlas = ExtResource("2_mj7da")
+region = Rect2(192, 50, 48, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7u2a"]
+atlas = ExtResource("2_mj7da")
+region = Rect2(240, 50, 48, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijoax"]
+atlas = ExtResource("2_mj7da")
+region = Rect2(288, 50, 48, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j8kkg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghshe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv2he")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5smuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5ved")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kv3aw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7u2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijoax")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BoomLine" type="Node2D"]
+script = ExtResource("1_qwk0f")
+
+[node name="Boom" type="AnimatedSprite2D" parent="."]
+position = Vector2(-166, 1)
+sprite_frames = SubResource("SpriteFrames_j8kkg")
+speed_scale = 2.0
+
+[node name="Boom2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-118, 1)
+sprite_frames = SubResource("SpriteFrames_j8kkg")
+speed_scale = 2.0
+
+[node name="Boom3" type="AnimatedSprite2D" parent="."]
+position = Vector2(-70, 1)
+sprite_frames = SubResource("SpriteFrames_j8kkg")
+speed_scale = 2.0
+
+[node name="Boom4" type="AnimatedSprite2D" parent="."]
+position = Vector2(-22, 1)
+sprite_frames = SubResource("SpriteFrames_j8kkg")
+speed_scale = 2.0
+
+[node name="Boom5" type="AnimatedSprite2D" parent="."]
+position = Vector2(26, 1)
+sprite_frames = SubResource("SpriteFrames_j8kkg")
+speed_scale = 2.0
+
+[node name="Boom6" type="AnimatedSprite2D" parent="."]
+position = Vector2(74, 1)
+sprite_frames = SubResource("SpriteFrames_j8kkg")
+speed_scale = 2.0
+
+[node name="Boom7" type="AnimatedSprite2D" parent="."]
+position = Vector2(122, 1)
+sprite_frames = SubResource("SpriteFrames_j8kkg")
+speed_scale = 2.0
+
+[node name="Boom8" type="AnimatedSprite2D" parent="."]
+position = Vector2(170, 1)
+sprite_frames = SubResource("SpriteFrames_j8kkg")
+speed_scale = 2.0
+
+[node name="Boom9" type="AnimatedSprite2D" parent="."]
+position = Vector2(218, 2)
+sprite_frames = SubResource("SpriteFrames_j8kkg")
+speed_scale = 2.0
+
+[connection signal="animation_finished" from="Boom" to="." method="_on_animation_finished"]
