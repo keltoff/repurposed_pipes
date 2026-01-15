@@ -156,7 +156,7 @@ volume_db = -6.0
 script = ExtResource("10_wr18j")
 songs = Array[AudioStream]([ExtResource("11_6jybn"), ExtResource("12_84odl"), ExtResource("13_ak604"), ExtResource("14_vimvf"), ExtResource("15_ghshe"), ExtResource("16_fv2he"), ExtResource("17_5smuj"), ExtResource("18_y5ved"), ExtResource("19_kv3aw")])
 
-[node name="PauseOverlay" type="CanvasLayer" parent="."]
+[node name="PauseOverlay" type="CanvasLayer" parent="." groups=["Overlays"]]
 visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="PauseOverlay"]
@@ -177,7 +177,7 @@ text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GameOverOverlay" type="CanvasLayer" parent="."]
+[node name="GameOverOverlay" type="CanvasLayer" parent="." groups=["Overlays"]]
 visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="GameOverOverlay"]
@@ -207,7 +207,7 @@ layout_mode = 2
 button_mask = 7
 text = "Play again"
 
-[node name="VictoryOverlay" type="CanvasLayer" parent="."]
+[node name="VictoryOverlay" type="CanvasLayer" parent="." groups=["Overlays"]]
 visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="VictoryOverlay"]
@@ -239,6 +239,10 @@ text = "Play again"
 
 [connection signal="paused" from="." to="NewBlock" method="_on_game_paused"]
 [connection signal="paused" from="." to="Timer" method="_on_game_paused"]
+[connection signal="reset" from="." to="Frame/Tiles" method="_on_game_reset"]
+[connection signal="reset" from="." to="NewBlock" method="_on_game_reset"]
+[connection signal="reset" from="." to="Timer" method="_on_game_reset"]
+[connection signal="reset" from="." to="PieceQueue" method="_on_game_reset"]
 [connection signal="unpaused" from="." to="NewBlock" method="_on_game_unpaused"]
 [connection signal="unpaused" from="." to="Timer" method="_on_game_unpaused"]
 [connection signal="water_reached_goal" from="Frame/Tiles" to="." method="_on_tiles_water_reached_goal"]

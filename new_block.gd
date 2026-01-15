@@ -88,3 +88,8 @@ func _on_game_paused() -> void:
 
 func _on_game_unpaused() -> void:
 	self.set_process_input(true)
+
+func _on_game_reset() -> void:
+	self.set_process_input(true)
+	for child in get_children():
+		child.queue_free()

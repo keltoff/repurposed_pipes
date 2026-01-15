@@ -95,4 +95,11 @@ func line_flash_effect(line: int):
 	var flash = boom_line.instantiate()
 	flash.position = map_to_local(Vector2i(0, line))
 	add_child(flash)
-	
+
+func _on_game_reset() -> void:
+	for x in range(-6, 7):
+		for y in range(-1, 14):
+			set_cell(Vector2i(x, y), ID_EMPTY, COORDS_NOTHING)
+	for loc in GOALS:
+		var pipe_shape = get_cell_atlas_coords(loc)
+		set_cell(loc, ID_EMPTY, pipe_shape)

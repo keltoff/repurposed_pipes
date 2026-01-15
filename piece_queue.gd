@@ -35,3 +35,9 @@ func resort_items():
 	for child in get_children():
 		child.position = Vector2(x0, y)
 		x0 += step
+
+
+func _on_game_reset() -> void:
+	for child in get_children():
+		remove_child(child)
+	_init()

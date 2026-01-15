@@ -2,6 +2,7 @@ extends Node2D
 
 signal paused
 signal unpaused
+signal reset
 
 var game_paused: bool = false
 var goals_reached: int = 0
@@ -22,11 +23,12 @@ func _on_new_block_overflowed() -> void:
 	paused.emit()
 	$GameOverOverlay.show()
 
-
 func _on_restart_button_pressed() -> void:
-	# TODO
-	pass # Replace with function body.
-
+	goals_reached = 0
+	game_paused = false
+	for overlay in get_tree().get_nodes_in_group("Overlays"):
+		overlay.hide()
+	reset.emit()
 
 func _on_tiles_water_reached_goal() -> void:
 	goals_reached += 1
