@@ -79,3 +79,9 @@ func can_all_move(dir: Vector2i):
 			return false
 
 	return true
+
+func _on_game_paused() -> void:
+	self.set_process_input(false)
+
+func _on_game_unpaused() -> void:
+	self.set_process_input(true)
