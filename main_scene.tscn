@@ -101,7 +101,7 @@ axis_stretch_vertical = 1
 [node name="Tiles" type="TileMapLayer" parent="Frame"]
 unique_name_in_owner = true
 position = Vector2(190, 35)
-tile_map_data = PackedByteArray("AAD5////AAACAAIAAAD5/wAAAAACAAIAAAD5/wEAAAACAAIAAAD5/wIAAAACAAIAAAD5/wMAAAABAAEAAAD5/wQAAAACAAIAAAD5/wUAAAACAAIAAAD5/wYAAAACAAIAAAD5/wcAAAACAAIAAAD5/wkAAAACAAIAAAD5/woAAAACAAIAAAD5/wgAAAACAAIAAAAHAP//AAACAAIAAAAHAAAAAAACAAIAAAAHAAEAAAACAAIAAAAHAAIAAAACAAIAAAAHAAQAAAACAAIAAAAHAAUAAAACAAIAAAAHAAYAAAACAAIAAAAHAAcAAAACAAIAAAAHAAgAAAACAAIAAAAHAAkAAAACAAIAAAAHAAoAAAACAAIAAAAHAAsAAAACAAIAAAAHAAwAAAACAAIAAAAHAA0AAAACAAIAAAD5/wsAAAACAAIAAAD5/wwAAAACAAIAAAD5/w0AAAACAAIAAAD6/w4AAAABAAEAAAD7/w4AAAABAAEAAAD8/w4AAAABAAEAAAD9/w4AAAABAAEAAAD+/w4AAAABAAEAAAAAAA4AAAABAAEAAAABAA4AAAABAAEAAAACAA4AAAABAAEAAAADAA4AAAACAAIAAAAEAA4AAAABAAEAAAAFAA4AAAABAAEAAAAGAA4AAAABAAEAAAD5/w4AAAABAAIAAAAHAA4AAAAAAAMAAAAHAAMAAAABAAEAAAD//w4AAAABAAEAAAA=")
+tile_map_data = PackedByteArray("AAD5////AAACAAIAAAD5/wAAAAACAAIAAAD5/wEAAAACAAIAAAD5/wIAAAACAAIAAAD5/wQAAAACAAIAAAD5/wUAAAACAAIAAAD5/wYAAAACAAIAAAD5/wcAAAACAAIAAAD5/wkAAAACAAIAAAD5/woAAAACAAIAAAD5/wgAAAACAAIAAAAHAP//AAACAAIAAAAHAAAAAAACAAIAAAAHAAEAAAACAAIAAAAHAAIAAAACAAIAAAAHAAQAAAACAAIAAAAHAAUAAAACAAIAAAAHAAYAAAACAAIAAAAHAAcAAAACAAIAAAAHAAgAAAACAAIAAAAHAAkAAAACAAIAAAAHAAoAAAACAAIAAAAHAAsAAAACAAIAAAAHAAwAAAACAAIAAAAHAA0AAAACAAIAAAD5/wsAAAACAAIAAAD5/wwAAAACAAIAAAD5/w0AAAACAAIAAAD6/w4AAAABAAEAAAD7/w4AAAABAAEAAAD8/w4AAAABAAEAAAD9/w4AAAABAAEAAAD+/w4AAAABAAEAAAAAAA4AAAABAAEAAAABAA4AAAABAAEAAAACAA4AAAABAAEAAAADAA4AAAACAAIAAAAEAA4AAAABAAEAAAAFAA4AAAABAAEAAAAGAA4AAAABAAEAAAD5/w4AAAABAAIAAAAHAA4AAAAAAAMAAAAHAAMAAAABAAEAAAD//w4AAAABAAEAAAD5/wMAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_gyfs4")
 script = ExtResource("4_7ycvg")
 
@@ -177,15 +177,79 @@ text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="GameOverOverlay" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="PanelContainer" type="PanelContainer" parent="GameOverOverlay"]
+anchors_preset = -1
+anchor_left = 0.286
+anchor_top = 0.469
+anchor_right = 0.286
+anchor_bottom = 0.469
+offset_left = -207.47202
+offset_top = -242.91202
+offset_right = 206.52798
+offset_bottom = 243.08798
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverOverlay/PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="GameOverOverlay/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="GameOverOverlay/PanelContainer/VBoxContainer"]
+layout_mode = 2
+button_mask = 7
+text = "Play again"
+
+[node name="VictoryOverlay" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="PanelContainer" type="PanelContainer" parent="VictoryOverlay"]
+anchors_preset = -1
+anchor_left = 0.286
+anchor_top = 0.469
+anchor_right = 0.286
+anchor_bottom = 0.469
+offset_left = -207.47202
+offset_top = -242.91202
+offset_right = 206.52798
+offset_bottom = 243.08798
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VictoryOverlay/PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VictoryOverlay/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "You win!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="VictoryOverlay/PanelContainer/VBoxContainer"]
+layout_mode = 2
+button_mask = 7
+text = "Play again"
+
 [connection signal="paused" from="." to="NewBlock" method="_on_game_paused"]
 [connection signal="paused" from="." to="Timer" method="_on_game_paused"]
 [connection signal="unpaused" from="." to="NewBlock" method="_on_game_unpaused"]
 [connection signal="unpaused" from="." to="Timer" method="_on_game_unpaused"]
+[connection signal="water_reached_goal" from="Frame/Tiles" to="." method="_on_tiles_water_reached_goal"]
 [connection signal="block_landed" from="NewBlock" to="SFXManager" method="_on_new_block_block_landed"]
 [connection signal="block_moved_down" from="NewBlock" to="SFXManager" method="_on_new_block_block_moved_down"]
 [connection signal="block_moved_left" from="NewBlock" to="SFXManager" method="_on_new_block_block_moved_left"]
 [connection signal="block_moved_right" from="NewBlock" to="SFXManager" method="_on_new_block_block_moved_right"]
 [connection signal="block_rotated" from="NewBlock" to="SFXManager" method="_on_new_block_block_rotated"]
+[connection signal="overflowed" from="NewBlock" to="." method="_on_new_block_overflowed"]
 [connection signal="timeout" from="Timer" to="Frame/Tiles" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="NewBlock" method="_on_timer_timeout"]
 [connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]
+[connection signal="pressed" from="GameOverOverlay/PanelContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="VictoryOverlay/PanelContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

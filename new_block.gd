@@ -5,6 +5,7 @@ signal block_moved_right
 signal block_moved_down
 signal block_rotated
 signal block_landed
+signal overflowed
 
 @onready
 var tilemap = %Tiles
@@ -30,6 +31,8 @@ func _input(_event: InputEvent) -> void:
 func _on_timer_timeout() -> void:
 	if get_child_count() == 0:
 		get_new_piece()
+		if not can_all_move(Vector2i.DOWN):
+			overflowed.emit()
 		return
 
 	if can_all_move(Vector2i.DOWN):

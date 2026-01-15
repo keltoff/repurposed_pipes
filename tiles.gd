@@ -1,10 +1,13 @@
 extends TileMapLayer
 
 signal lines_removed
+signal water_reached_goal
 
 var ID_EMPTY = 0
 var ID_WATER = 1
-var COORDS_NOTHING = Vector2i(-1, -1)
+
+const COORDS_NOTHING = Vector2i(-1, -1)
+const GOALS = [Vector2i(-7, 3), Vector2i(7, 3)]
 
 var x_range = range(-6, 7)
 
@@ -26,6 +29,8 @@ func process_water():
 	for cell in get_used_cells_by_id(ID_EMPTY):
 		if any_neighbor_filled(cell):
 			new_flooded.append(cell)
+			if cell in GOALS:
+				water_reached_goal.emit()
 	
 	for cell in new_flooded:
 		set_water(cell, true)
