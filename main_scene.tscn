@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=4 uid="uid://dredt2euhd4sp"]
+[gd_scene load_steps=35 format=4 uid="uid://dredt2euhd4sp"]
 
 [ext_resource type="Script" uid="uid://ctrdjlesjen4i" path="res://main_scene.gd" id="1_84odl"]
 [ext_resource type="Texture2D" uid="uid://irq2uedvugdh" path="res://img/pipes_rotated.png" id="1_d5x1h"]
 [ext_resource type="Texture2D" uid="uid://dwtwaudq33xr0" path="res://img/Gold_Border.png" id="1_gyfs4"]
+[ext_resource type="Texture2D" uid="uid://bskfdi5etc0th" path="res://img/background.png" id="2_vimvf"]
 [ext_resource type="Texture2D" uid="uid://dm52qgs2a4wdl" path="res://img/pipes_rotated_full.png" id="3_66tet"]
 [ext_resource type="Script" uid="uid://craoq4w1o3i31" path="res://tiles.gd" id="4_7ycvg"]
 [ext_resource type="Script" uid="uid://cpy82sfmefxmw" path="res://new_block.gd" id="4_nfk4m"]
@@ -11,6 +12,7 @@
 [ext_resource type="Script" uid="uid://drcvfitehngiy" path="res://timer.gd" id="7_ak604"]
 [ext_resource type="AudioStream" uid="uid://benekohdh3h87" path="res://sfx/body hits metal 12.wav" id="8_7ycvg"]
 [ext_resource type="AudioStream" uid="uid://cns7s3v5ixx2e" path="res://sfx/bat being held 5.wav" id="9_wr18j"]
+[ext_resource type="Texture2D" uid="uid://cqapyygvsiier" path="res://img/plus.png" id="10_ghshe"]
 [ext_resource type="Script" uid="uid://boevokyyt7w8w" path="res://music_player.gd" id="10_wr18j"]
 [ext_resource type="AudioStream" uid="uid://biqjv6r543dxo" path="res://music/Patreon Challenge 06.ogg" id="11_6jybn"]
 [ext_resource type="AudioStream" uid="uid://cpkyk4dyf2yr3" path="res://music/Sketchbook 2024-03-30_01_L02.ogg" id="12_84odl"]
@@ -80,19 +82,49 @@ pattern_1 = SubResource("TileMapPattern_d5x1h")
 pattern_2 = SubResource("TileMapPattern_8mm7a")
 pattern_3 = SubResource("TileMapPattern_hq1ik")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fv2he"]
+bg_color = Color(0.49803922, 0.14117648, 0.14509805, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ghshe"]
+texture = ExtResource("2_vimvf")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.6, 0.6, 0.6, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fv2he"]
+texture = ExtResource("2_vimvf")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.6, 0.6, 0.6, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5smuj"]
+texture = ExtResource("2_vimvf")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.6, 0.6, 0.6, 1)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_84odl")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 z_index = -1
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 
+[node name="PlayAreaGridBackground" type="TextureRect" parent="Background"]
+z_index = 1
+layout_mode = 0
+offset_left = 82.0
+offset_right = 562.0
+offset_bottom = 647.0
+texture = ExtResource("2_vimvf")
+stretch_mode = 1
+
 [node name="Frame" type="NinePatchRect" parent="."]
-offset_left = 122.0
+offset_left = 116.0
 offset_top = 61.0
-offset_right = 536.0
+offset_right = 530.0
 offset_bottom = 547.0
 texture = ExtResource("1_gyfs4")
 draw_center = false
@@ -142,6 +174,170 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 script = ExtResource("6_7ycvg")
 
+[node name="SFXVolume" type="NinePatchRect" parent="."]
+offset_left = 610.0
+offset_top = 164.0
+offset_right = 1115.0
+offset_bottom = 276.0
+texture = ExtResource("1_gyfs4")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SFXVolume"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -251.5
+offset_top = -54.0
+offset_right = 251.5
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Label" type="Label" parent="SFXVolume/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "SFX volume"
+horizontal_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="SFXVolume/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_constants/center_grabber = 0
+theme_override_constants/grabber_offset = 0
+theme_override_constants/tick_offset = 0
+theme_override_icons/grabber = ExtResource("10_ghshe")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_fv2he")
+min_value = -60.0
+max_value = 0.0
+step = 6.0
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="MusicVolume" type="NinePatchRect" parent="."]
+offset_left = 610.0
+offset_top = 300.0
+offset_right = 1115.0
+offset_bottom = 414.0
+texture = ExtResource("1_gyfs4")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MusicVolume"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -251.5
+offset_top = -55.0
+offset_right = 251.5
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Label" type="Label" parent="MusicVolume/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Music volume"
+horizontal_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="MusicVolume/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_constants/center_grabber = 0
+theme_override_constants/grabber_offset = 0
+theme_override_constants/tick_offset = 0
+theme_override_icons/grabber = ExtResource("10_ghshe")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_fv2he")
+min_value = -60.0
+max_value = 0.0
+step = 6.0
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="RestartEasy" type="NinePatchRect" parent="."]
+offset_left = 610.0
+offset_top = 435.0
+offset_right = 854.0
+offset_bottom = 541.0
+texture = ExtResource("1_gyfs4")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="RestartEasyButton" type="Button" parent="RestartEasy"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 241.0
+offset_bottom = 103.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_ghshe")
+text = "Restart
+
+Easy
+single goal"
+
+[node name="RestartNormal" type="NinePatchRect" parent="."]
+offset_left = 868.0
+offset_top = 435.0
+offset_right = 1115.0
+offset_bottom = 541.0
+texture = ExtResource("1_gyfs4")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="RestartNormalButton" type="Button" parent="RestartNormal"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 241.0
+offset_bottom = 103.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_fv2he")
+text = "Restart 
+
+Normal
+both goals"
+
+[node name="Credits" type="NinePatchRect" parent="."]
+offset_left = 610.0
+offset_top = 565.0
+offset_right = 1115.0
+offset_bottom = 605.0
+texture = ExtResource("1_gyfs4")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="PauseCreditsButton" type="Button" parent="Credits"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 501.0
+offset_bottom = 37.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_5smuj")
+text = "Pause / Credits"
+
 [node name="SFXManager" type="Node" parent="."]
 script = ExtResource("6_nfk4m")
 moved_left_snd = ExtResource("9_wr18j")
@@ -162,24 +358,42 @@ volume_db = -6.0
 script = ExtResource("10_wr18j")
 songs = Array[AudioStream]([ExtResource("11_6jybn"), ExtResource("12_84odl"), ExtResource("13_ak604"), ExtResource("14_vimvf"), ExtResource("15_ghshe"), ExtResource("16_fv2he"), ExtResource("17_5smuj"), ExtResource("18_y5ved"), ExtResource("19_kv3aw")])
 
-[node name="PauseOverlay" type="CanvasLayer" parent="." groups=["Overlays"]]
+[node name="PauseCreditsOverlay" type="CanvasLayer" parent="." groups=["Overlays"]]
 visible = false
 
-[node name="PanelContainer" type="PanelContainer" parent="PauseOverlay"]
+[node name="PanelContainer" type="PanelContainer" parent="PauseCreditsOverlay"]
 anchors_preset = -1
 anchor_left = 0.286
 anchor_top = 0.469
 anchor_right = 0.286
 anchor_bottom = 0.469
-offset_left = -204.47202
+offset_left = -211.47202
 offset_top = -239.91202
-offset_right = 203.52798
+offset_right = 197.52798
 offset_bottom = 240.08798
 
-[node name="Label" type="Label" parent="PauseOverlay/PanelContainer"]
+[node name="Text" type="RichTextLabel" parent="PauseCreditsOverlay/PanelContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Paused"
+bbcode_enabled = true
+text = "[u][font_size=24]Made by[/font_size][/u]
+
+Kelton & Lyco
+for 
+Godot Wild Jam #89
+
+[u][font_size=24]Sound effects[/font_size][/u]
+
+FilmCow Royalty Free Sound Effects Library
+
+JSFXR sound generator
+
+[u][font_size=24]Music[/font_size][/u]
+
+Abstraction: FREE Music Loop Bundle
+
+[u][font_size=24]Graphics[/font_size][/u]
+
+OpenGameArt"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -192,26 +406,17 @@ anchor_left = 0.286
 anchor_top = 0.469
 anchor_right = 0.286
 anchor_bottom = 0.469
-offset_left = -204.47202
+offset_left = -211.47202
 offset_top = -239.91202
-offset_right = 203.52798
+offset_right = 197.52798
 offset_bottom = 240.08798
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameOverOverlay/PanelContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="GameOverOverlay/PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="GameOverOverlay/PanelContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="RestartButton" type="Button" parent="GameOverOverlay/PanelContainer/VBoxContainer"]
-layout_mode = 2
-button_mask = 7
-text = "Play again"
 
 [node name="VictoryOverlay" type="CanvasLayer" parent="." groups=["Overlays"]]
 visible = false
@@ -222,26 +427,17 @@ anchor_left = 0.286
 anchor_top = 0.469
 anchor_right = 0.286
 anchor_bottom = 0.469
-offset_left = -204.47202
+offset_left = -210.47202
 offset_top = -239.91202
-offset_right = 203.52798
+offset_right = 198.52798
 offset_bottom = 240.08798
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VictoryOverlay/PanelContainer"]
+[node name="Label" type="Label" parent="VictoryOverlay/PanelContainer"]
 layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="VictoryOverlay/PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Wictory"
+theme_override_font_sizes/font_size = 40
+text = "Victory"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="RestartButton" type="Button" parent="VictoryOverlay/PanelContainer/VBoxContainer"]
-layout_mode = 2
-button_mask = 7
-text = "Play again"
 
 [connection signal="paused" from="." to="NewBlock" method="_on_game_paused"]
 [connection signal="paused" from="." to="Timer" method="_on_game_paused"]
@@ -260,6 +456,7 @@ text = "Play again"
 [connection signal="overflowed" from="NewBlock" to="." method="_on_new_block_overflowed"]
 [connection signal="timeout" from="Timer" to="Frame/Tiles" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="NewBlock" method="_on_timer_timeout"]
+[connection signal="pressed" from="RestartEasy/RestartEasyButton" to="." method="_on_restart_easy_button_pressed"]
+[connection signal="pressed" from="RestartNormal/RestartNormalButton" to="." method="_on_restart_normal_button_pressed"]
+[connection signal="pressed" from="Credits/PauseCreditsButton" to="." method="_on_pause_credits_button_pressed"]
 [connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]
-[connection signal="pressed" from="GameOverOverlay/PanelContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="VictoryOverlay/PanelContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
