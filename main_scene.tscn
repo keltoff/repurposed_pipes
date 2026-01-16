@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://dredt2euhd4sp"]
+[gd_scene load_steps=44 format=4 uid="uid://dredt2euhd4sp"]
 
 [ext_resource type="Script" uid="uid://ctrdjlesjen4i" path="res://main_scene.gd" id="1_84odl"]
 [ext_resource type="Texture2D" uid="uid://irq2uedvugdh" path="res://img/pipes_rotated.png" id="1_d5x1h"]
@@ -23,6 +23,11 @@
 [ext_resource type="AudioStream" uid="uid://2bc4g3jc1hwa" path="res://music/VGMA Challenge 14.ogg" id="17_5smuj"]
 [ext_resource type="AudioStream" uid="uid://cfo6b8ypb5d2u" path="res://music/VGMA Challenge 20.ogg" id="18_y5ved"]
 [ext_resource type="AudioStream" uid="uid://bj2yjnx8hd0nv" path="res://music/Patreon Challenge 13.ogg" id="19_kv3aw"]
+[ext_resource type="Texture2D" uid="uid://d0rkvow530d1l" path="res://img/left_touch_button.png" id="24_kv3aw"]
+[ext_resource type="Script" uid="uid://cvhmt0etqbr52" path="res://mobile_controls.gd" id="24_o7u2a"]
+[ext_resource type="Texture2D" uid="uid://b6m8acwvq3aj0" path="res://img/down_touch_button.png" id="25_o7u2a"]
+[ext_resource type="Texture2D" uid="uid://djqca0xcn8eck" path="res://img/rotate_touch_button.png" id="26_ijoax"]
+[ext_resource type="Texture2D" uid="uid://bevqvuman12e" path="res://img/right_touch_button.png" id="27_j8kkg"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_gyfs4"]
 tile_data = PackedInt32Array(0, 65537, 0, 1, 65537, 0, 2, 65537, 0, 3, 65537, 0)
@@ -85,6 +90,12 @@ pattern_3 = SubResource("TileMapPattern_hq1ik")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fv2he"]
 bg_color = Color(0.49803922, 0.14117648, 0.14509805, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7u2a"]
+bg_color = Color(0.65773064, 0.20304903, 0.20671564, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijoax"]
+bg_color = Color(0.65882355, 0.20392157, 0.20784314, 1)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ghshe"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fv2he"]
@@ -101,11 +112,7 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 modulate_color = Color(0.6, 0.6, 0.6, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5smuj"]
-texture = ExtResource("2_vimvf")
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-modulate_color = Color(0.6, 0.6, 0.6, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5smuj"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_84odl")
@@ -179,11 +186,52 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 script = ExtResource("6_7ycvg")
 
+[node name="MobileControls" type="HBoxContainer" parent="."]
+offset_left = 3.0
+offset_top = 594.0
+offset_right = 1148.0
+offset_bottom = 647.0
+alignment = 1
+script = ExtResource("24_o7u2a")
+
+[node name="LeftButton" type="TextureButton" parent="MobileControls"]
+layout_mode = 2
+texture_normal = ExtResource("24_kv3aw")
+texture_pressed = ExtResource("24_kv3aw")
+texture_hover = ExtResource("24_kv3aw")
+texture_disabled = ExtResource("24_kv3aw")
+texture_focused = ExtResource("24_kv3aw")
+
+[node name="DownButton" type="TextureButton" parent="MobileControls"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("25_o7u2a")
+texture_pressed = ExtResource("25_o7u2a")
+texture_hover = ExtResource("25_o7u2a")
+texture_disabled = ExtResource("25_o7u2a")
+texture_focused = ExtResource("25_o7u2a")
+
+[node name="RotateButton" type="TextureButton" parent="MobileControls"]
+layout_mode = 2
+texture_normal = ExtResource("26_ijoax")
+texture_pressed = ExtResource("26_ijoax")
+texture_hover = ExtResource("26_ijoax")
+texture_disabled = ExtResource("26_ijoax")
+texture_focused = ExtResource("26_ijoax")
+
+[node name="RightButton" type="TextureButton" parent="MobileControls"]
+layout_mode = 2
+texture_normal = ExtResource("27_j8kkg")
+texture_pressed = ExtResource("27_j8kkg")
+texture_hover = ExtResource("27_j8kkg")
+texture_disabled = ExtResource("27_j8kkg")
+texture_focused = ExtResource("27_j8kkg")
+
 [node name="SFXVolume" type="NinePatchRect" parent="."]
-offset_left = 610.0
-offset_top = 164.0
-offset_right = 1115.0
-offset_bottom = 263.0
+offset_left = 611.0
+offset_top = 156.0
+offset_right = 1116.0
+offset_bottom = 255.0
 texture = ExtResource("1_gyfs4")
 patch_margin_left = 4
 patch_margin_top = 4
@@ -223,7 +271,9 @@ theme_override_constants/center_grabber = 0
 theme_override_constants/grabber_offset = 0
 theme_override_constants/tick_offset = 0
 theme_override_icons/grabber = ExtResource("10_ghshe")
+theme_override_icons/grabber_highlight = ExtResource("10_ghshe")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_fv2he")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_o7u2a")
 min_value = -48.0
 max_value = 0.0
 step = 6.0
@@ -231,10 +281,10 @@ ticks_on_borders = true
 ticks_position = 3
 
 [node name="MusicVolume" type="NinePatchRect" parent="."]
-offset_left = 610.0
-offset_top = 284.0
-offset_right = 1115.0
-offset_bottom = 414.0
+offset_left = 611.0
+offset_top = 265.0
+offset_right = 1116.0
+offset_bottom = 395.0
 texture = ExtResource("1_gyfs4")
 patch_margin_left = 4
 patch_margin_top = 4
@@ -275,7 +325,9 @@ theme_override_constants/center_grabber = 0
 theme_override_constants/grabber_offset = 0
 theme_override_constants/tick_offset = 0
 theme_override_icons/grabber = ExtResource("10_ghshe")
+theme_override_icons/grabber_highlight = ExtResource("10_ghshe")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_fv2he")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_ijoax")
 min_value = -48.0
 max_value = 0.0
 step = 6.0
@@ -306,10 +358,10 @@ text = "Next song → "
 alignment = 2
 
 [node name="RestartEasy" type="NinePatchRect" parent="."]
-offset_left = 610.0
-offset_top = 435.0
-offset_right = 854.0
-offset_bottom = 541.0
+offset_left = 611.0
+offset_top = 411.0
+offset_right = 856.0
+offset_bottom = 517.0
 texture = ExtResource("1_gyfs4")
 patch_margin_left = 4
 patch_margin_top = 4
@@ -330,9 +382,9 @@ single goal"
 
 [node name="RestartNormal" type="NinePatchRect" parent="."]
 offset_left = 868.0
-offset_top = 435.0
-offset_right = 1115.0
-offset_bottom = 541.0
+offset_top = 411.0
+offset_right = 1116.0
+offset_bottom = 517.0
 texture = ExtResource("1_gyfs4")
 patch_margin_left = 4
 patch_margin_top = 4
@@ -352,10 +404,10 @@ Normal
 both goals"
 
 [node name="Credits" type="NinePatchRect" parent="."]
-offset_left = 610.0
-offset_top = 565.0
-offset_right = 1115.0
-offset_bottom = 605.0
+offset_left = 611.0
+offset_top = 533.0
+offset_right = 1116.0
+offset_bottom = 573.0
 texture = ExtResource("1_gyfs4")
 patch_margin_left = 4
 patch_margin_top = 4
@@ -368,7 +420,7 @@ offset_left = 2.0
 offset_top = 2.0
 offset_right = 503.0
 offset_bottom = 38.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_5smuj")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5smuj")
 text = "Pause / Credits"
 
 [node name="SFXManager" type="Node" parent="."]
@@ -400,10 +452,10 @@ anchor_left = 0.286
 anchor_top = 0.469
 anchor_right = 0.286
 anchor_bottom = 0.469
-offset_left = -211.47202
+offset_left = -219.47202
 offset_top = -239.91202
-offset_right = 197.52798
-offset_bottom = 240.08798
+offset_right = 202.52798
+offset_bottom = 244.08798
 
 [node name="Text" type="RichTextLabel" parent="PauseCreditsOverlay/PanelContainer"]
 layout_mode = 2
@@ -439,10 +491,10 @@ anchor_left = 0.286
 anchor_top = 0.469
 anchor_right = 0.286
 anchor_bottom = 0.469
-offset_left = -211.47202
+offset_left = -219.47202
 offset_top = -239.91202
-offset_right = 197.52798
-offset_bottom = 240.08798
+offset_right = 202.52798
+offset_bottom = 244.08798
 
 [node name="Label" type="Label" parent="GameOverOverlay/PanelContainer"]
 layout_mode = 2
@@ -460,10 +512,10 @@ anchor_left = 0.286
 anchor_top = 0.469
 anchor_right = 0.286
 anchor_bottom = 0.469
-offset_left = -210.47202
+offset_left = -219.47202
 offset_top = -239.91202
-offset_right = 198.52798
-offset_bottom = 240.08798
+offset_right = 202.52798
+offset_bottom = 244.08798
 
 [node name="Label" type="Label" parent="VictoryOverlay/PanelContainer"]
 layout_mode = 2
@@ -489,6 +541,14 @@ vertical_alignment = 1
 [connection signal="overflowed" from="NewBlock" to="." method="_on_new_block_overflowed"]
 [connection signal="timeout" from="Timer" to="Tiles" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="NewBlock" method="_on_timer_timeout"]
+[connection signal="button_down" from="MobileControls/LeftButton" to="MobileControls" method="_on_left_button_button_down"]
+[connection signal="button_up" from="MobileControls/LeftButton" to="MobileControls" method="_on_left_button_button_up"]
+[connection signal="button_down" from="MobileControls/DownButton" to="MobileControls" method="_on_down_button_button_down"]
+[connection signal="button_up" from="MobileControls/DownButton" to="MobileControls" method="_on_down_button_button_up"]
+[connection signal="button_down" from="MobileControls/RotateButton" to="MobileControls" method="_on_rotate_button_button_down"]
+[connection signal="button_up" from="MobileControls/RotateButton" to="MobileControls" method="_on_rotate_button_button_up"]
+[connection signal="button_down" from="MobileControls/RightButton" to="MobileControls" method="_on_right_button_button_down"]
+[connection signal="button_up" from="MobileControls/RightButton" to="MobileControls" method="_on_right_button_button_up"]
 [connection signal="value_changed" from="SFXVolume/VBoxContainer/SFXSlider" to="SFXManager" method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="MusicVolume/VBoxContainer/MusicSlider" to="MusicPlayer" method="_on_music_slider_value_changed"]
 [connection signal="pressed" from="MusicVolume/VBoxContainer/GridContainer/PreviousSong" to="MusicPlayer" method="_on_previous_song_pressed"]
