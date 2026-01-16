@@ -14,10 +14,10 @@ func pause_game():
 		game_paused = not game_paused
 		if game_paused:
 			paused.emit()
-			$PauseOverlay.show()
+			$PauseCreditsOverlay.show()
 		else:
 			unpaused.emit()
-			$PauseOverlay.hide()
+			$PauseCreditsOverlay.hide()
 	else:
 		for overlay in get_tree().get_nodes_in_group("Overlays"):
 			overlay.hide()

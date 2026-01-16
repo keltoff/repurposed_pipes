@@ -115,17 +115,18 @@ color = Color(0, 0, 0, 1)
 [node name="PlayAreaGridBackground" type="TextureRect" parent="Background"]
 z_index = 1
 layout_mode = 0
-offset_left = 82.0
-offset_right = 562.0
+offset_left = 81.0
+offset_right = 559.0
 offset_bottom = 647.0
 texture = ExtResource("2_vimvf")
 stretch_mode = 1
 
-[node name="Frame" type="NinePatchRect" parent="."]
-offset_left = 116.0
+[node name="Frame" type="NinePatchRect" parent="Background"]
+layout_mode = 0
+offset_left = 110.0
 offset_top = 61.0
 offset_right = 530.0
-offset_bottom = 547.0
+offset_bottom = 546.0
 texture = ExtResource("1_gyfs4")
 draw_center = false
 region_rect = Rect2(-0.1139431, -0.04946804, 40.40973, 56.330612)
@@ -136,14 +137,14 @@ patch_margin_bottom = 4
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 1
 
-[node name="Tiles" type="TileMapLayer" parent="Frame"]
+[node name="Tiles" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
-position = Vector2(190, 35)
+position = Vector2(304, 96)
 tile_map_data = PackedByteArray("AAD5////AAACAAIAAAD5/wAAAAACAAIAAAD5/wEAAAACAAIAAAD5/wIAAAACAAIAAAD5/wQAAAACAAIAAAD5/wUAAAACAAIAAAD5/wYAAAACAAIAAAD5/wcAAAACAAIAAAD5/wkAAAACAAIAAAD5/woAAAACAAIAAAD5/wgAAAACAAIAAAAHAP//AAACAAIAAAAHAAAAAAACAAIAAAAHAAEAAAACAAIAAAAHAAIAAAACAAIAAAAHAAQAAAACAAIAAAAHAAUAAAACAAIAAAAHAAYAAAACAAIAAAAHAAcAAAACAAIAAAAHAAgAAAACAAIAAAAHAAkAAAACAAIAAAAHAAoAAAACAAIAAAAHAAsAAAACAAIAAAAHAAwAAAACAAIAAAAHAA0AAAACAAIAAAD5/wsAAAACAAIAAAD5/wwAAAACAAIAAAD5/w0AAAACAAIAAAD6/w4AAAABAAEAAAD7/w4AAAABAAEAAAD8/w4AAAABAAEAAAD9/w4AAAABAAEAAAD+/w4AAAABAAEAAAAAAA4AAAABAAEAAAABAA4AAAABAAEAAAACAA4AAAABAAEAAAADAA4AAAACAAIAAAAEAA4AAAABAAEAAAAFAA4AAAABAAEAAAAGAA4AAAABAAEAAAD5/w4AAAABAAIAAAAHAA4AAAAAAAMAAAAHAAMAAAABAAEAAAD//w4AAAABAAEAAAD5/wMAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_gyfs4")
 script = ExtResource("4_7ycvg")
 
-[node name="WaterSource" type="Node2D" parent="Frame/Tiles"]
+[node name="WaterSource" type="Node2D" parent="Tiles"]
 position = Vector2(112, 470)
 
 [node name="NewBlock" type="Node2D" parent="."]
@@ -285,10 +286,10 @@ patch_margin_bottom = 4
 
 [node name="RestartEasyButton" type="Button" parent="RestartEasy"]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 241.0
-offset_bottom = 103.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 242.0
+offset_bottom = 104.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_ghshe")
 text = "Restart
 
@@ -309,9 +310,9 @@ patch_margin_bottom = 4
 [node name="RestartNormalButton" type="Button" parent="RestartNormal"]
 layout_mode = 0
 offset_left = 2.0
-offset_top = 3.0
-offset_right = 241.0
-offset_bottom = 103.0
+offset_top = 2.0
+offset_right = 245.0
+offset_bottom = 104.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_fv2he")
 text = "Restart 
 
@@ -331,10 +332,10 @@ patch_margin_bottom = 4
 
 [node name="PauseCreditsButton" type="Button" parent="Credits"]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 501.0
-offset_bottom = 37.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 503.0
+offset_bottom = 38.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_5smuj")
 text = "Pause / Credits"
 
@@ -441,20 +442,20 @@ vertical_alignment = 1
 
 [connection signal="paused" from="." to="NewBlock" method="_on_game_paused"]
 [connection signal="paused" from="." to="Timer" method="_on_game_paused"]
-[connection signal="reset" from="." to="Frame/Tiles" method="_on_game_reset"]
+[connection signal="reset" from="." to="Tiles" method="_on_game_reset"]
 [connection signal="reset" from="." to="NewBlock" method="_on_game_reset"]
 [connection signal="reset" from="." to="Timer" method="_on_game_reset"]
 [connection signal="reset" from="." to="PieceQueue" method="_on_game_reset"]
 [connection signal="unpaused" from="." to="NewBlock" method="_on_game_unpaused"]
 [connection signal="unpaused" from="." to="Timer" method="_on_game_unpaused"]
-[connection signal="water_reached_goal" from="Frame/Tiles" to="." method="_on_tiles_water_reached_goal"]
+[connection signal="water_reached_goal" from="Tiles" to="." method="_on_tiles_water_reached_goal"]
 [connection signal="block_landed" from="NewBlock" to="SFXManager" method="_on_new_block_block_landed"]
 [connection signal="block_moved_down" from="NewBlock" to="SFXManager" method="_on_new_block_block_moved_down"]
 [connection signal="block_moved_left" from="NewBlock" to="SFXManager" method="_on_new_block_block_moved_left"]
 [connection signal="block_moved_right" from="NewBlock" to="SFXManager" method="_on_new_block_block_moved_right"]
 [connection signal="block_rotated" from="NewBlock" to="SFXManager" method="_on_new_block_block_rotated"]
 [connection signal="overflowed" from="NewBlock" to="." method="_on_new_block_overflowed"]
-[connection signal="timeout" from="Timer" to="Frame/Tiles" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="Tiles" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="NewBlock" method="_on_timer_timeout"]
 [connection signal="pressed" from="RestartEasy/RestartEasyButton" to="." method="_on_restart_easy_button_pressed"]
 [connection signal="pressed" from="RestartNormal/RestartNormalButton" to="." method="_on_restart_normal_button_pressed"]
