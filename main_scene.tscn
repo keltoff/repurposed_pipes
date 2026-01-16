@@ -292,7 +292,7 @@ size_flags_horizontal = 3
 focus_mode = 0
 theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ghshe")
-text = " < Prev song"
+text = " ← Prev song"
 alignment = 0
 
 [node name="NextSong" type="Button" parent="MusicVolume/VBoxContainer/GridContainer"]
@@ -302,7 +302,7 @@ size_flags_vertical = 3
 focus_mode = 0
 theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxEmpty_fv2he")
-text = "Next song > "
+text = "Next song → "
 alignment = 2
 
 [node name="RestartEasy" type="NinePatchRect" parent="."]
