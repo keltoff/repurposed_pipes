@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://dredt2euhd4sp"]
+[gd_scene load_steps=37 format=4 uid="uid://dredt2euhd4sp"]
 
 [ext_resource type="Script" uid="uid://ctrdjlesjen4i" path="res://main_scene.gd" id="1_84odl"]
 [ext_resource type="Texture2D" uid="uid://irq2uedvugdh" path="res://img/pipes_rotated.png" id="1_d5x1h"]
@@ -85,6 +85,10 @@ pattern_3 = SubResource("TileMapPattern_hq1ik")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fv2he"]
 bg_color = Color(0.49803922, 0.14117648, 0.14509805, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ghshe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fv2he"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ghshe"]
 texture = ExtResource("2_vimvf")
 axis_stretch_horizontal = 1
@@ -161,9 +165,9 @@ script = ExtResource("7_ak604")
 
 [node name="PieceQueue" type="NinePatchRect" parent="."]
 unique_name_in_owner = true
-offset_left = 610.0
+offset_left = 611.0
 offset_top = 45.0
-offset_right = 1618.0
+offset_right = 1617.0
 offset_bottom = 243.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_gyfs4")
@@ -179,7 +183,7 @@ script = ExtResource("6_7ycvg")
 offset_left = 610.0
 offset_top = 164.0
 offset_right = 1115.0
-offset_bottom = 276.0
+offset_bottom = 263.0
 texture = ExtResource("1_gyfs4")
 patch_margin_left = 4
 patch_margin_top = 4
@@ -193,10 +197,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -251.5
-offset_top = -54.0
-offset_right = 251.5
-offset_bottom = 54.0
+offset_left = -246.5
+offset_top = -45.5
+offset_right = 246.5
+offset_bottom = 45.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 8
@@ -207,18 +211,20 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "SFX volume"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SFXSlider" type="HSlider" parent="SFXVolume/VBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
+focus_mode = 0
 theme_override_constants/center_grabber = 0
 theme_override_constants/grabber_offset = 0
 theme_override_constants/tick_offset = 0
 theme_override_icons/grabber = ExtResource("10_ghshe")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_fv2he")
-min_value = -60.0
+min_value = -48.0
 max_value = 0.0
 step = 6.0
 ticks_on_borders = true
@@ -226,7 +232,7 @@ ticks_position = 3
 
 [node name="MusicVolume" type="NinePatchRect" parent="."]
 offset_left = 610.0
-offset_top = 300.0
+offset_top = 284.0
 offset_right = 1115.0
 offset_bottom = 414.0
 texture = ExtResource("1_gyfs4")
@@ -242,10 +248,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -251.5
-offset_top = -55.0
-offset_right = 251.5
-offset_bottom = 55.0
+offset_left = -246.5
+offset_top = -64.0
+offset_right = 246.5
+offset_bottom = 62.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 8
@@ -253,25 +259,51 @@ alignment = 1
 
 [node name="Label" type="Label" parent="MusicVolume/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 1
 theme_override_font_sizes/font_size = 32
 text = "Music volume"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MusicSlider" type="HSlider" parent="MusicVolume/VBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
+focus_mode = 0
 theme_override_constants/center_grabber = 0
 theme_override_constants/grabber_offset = 0
 theme_override_constants/tick_offset = 0
 theme_override_icons/grabber = ExtResource("10_ghshe")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_fv2he")
-min_value = -60.0
+min_value = -48.0
 max_value = 0.0
 step = 6.0
 ticks_on_borders = true
 ticks_position = 3
+
+[node name="GridContainer" type="GridContainer" parent="MusicVolume/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="PreviousSong" type="Button" parent="MusicVolume/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ghshe")
+text = " < Prev song"
+alignment = 0
+
+[node name="NextSong" type="Button" parent="MusicVolume/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fv2he")
+text = "Next song > "
+alignment = 2
 
 [node name="RestartEasy" type="NinePatchRect" parent="."]
 offset_left = 610.0
@@ -457,6 +489,10 @@ vertical_alignment = 1
 [connection signal="overflowed" from="NewBlock" to="." method="_on_new_block_overflowed"]
 [connection signal="timeout" from="Timer" to="Tiles" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="NewBlock" method="_on_timer_timeout"]
+[connection signal="value_changed" from="SFXVolume/VBoxContainer/SFXSlider" to="SFXManager" method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="MusicVolume/VBoxContainer/MusicSlider" to="MusicPlayer" method="_on_music_slider_value_changed"]
+[connection signal="pressed" from="MusicVolume/VBoxContainer/GridContainer/PreviousSong" to="MusicPlayer" method="_on_previous_song_pressed"]
+[connection signal="pressed" from="MusicVolume/VBoxContainer/GridContainer/NextSong" to="MusicPlayer" method="_on_next_song_pressed"]
 [connection signal="pressed" from="RestartEasy/RestartEasyButton" to="." method="_on_restart_easy_button_pressed"]
 [connection signal="pressed" from="RestartNormal/RestartNormalButton" to="." method="_on_restart_normal_button_pressed"]
 [connection signal="pressed" from="Credits/PauseCreditsButton" to="." method="_on_pause_credits_button_pressed"]
