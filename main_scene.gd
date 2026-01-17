@@ -32,6 +32,7 @@ func _on_new_block_overflowed() -> void:
 	game_ended = true
 	paused.emit()
 	$GameOverOverlay.show()
+	$GameOverOverlay/PanelContainer/ScoreLabel.text = 'Final score: {0}\n\n'.format([$Score/LabelScore.value])
 
 func restart_game() -> void:
 	game_ended = false
@@ -43,10 +44,10 @@ func restart_game() -> void:
 
 func _on_tiles_water_reached_goal() -> void:
 	goals_reached += 1
-	if goals_reached == goals_to_win:
-		game_ended = true
-		paused.emit()
-		$VictoryOverlay.show()
+	#if goals_reached == goals_to_win:
+		#game_ended = true
+		#paused.emit()
+		#$VictoryOverlay.show()
 
 func _on_restart_easy_button_pressed() -> void:
 	goals_to_win = 1

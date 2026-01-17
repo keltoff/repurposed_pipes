@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvu5teh2tfvfh"]
+
+[ext_resource type="Script" uid="uid://bco720k7b0wf2" path="res://shadowLabel.gd" id="1_5xd4x"]
+
+[node name="LabelScore" type="Label"]
+anchors_preset = -1
+anchor_right = 0.99000007
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -2.8200378
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0.23, 0.23, 0.23, 1)
+theme_override_font_sizes/font_size = 30
+text = "000  "
+horizontal_alignment = 2
+script = ExtResource("1_5xd4x")
+value = 25
+digits = 5
+
+[node name="ValueLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.99000007
+offset_right = 4.059967
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0.99, 0.99, 0.99, 1)
+theme_override_font_sizes/font_size = 30
+text = "   25"
+horizontal_alignment = 2

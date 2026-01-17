@@ -5,11 +5,13 @@ signal water_reached_goal
 
 var ID_EMPTY = 0
 var ID_WATER = 1
+var ID_NONE = -1
 
 const COORDS_NOTHING = Vector2i(-1, -1)
-const GOALS = [Vector2i(-7, 3), Vector2i(7, 3)]
+const GOALS = [Vector2i(-7, 3), Vector2i(7, 3), Vector2i(-7, 9), Vector2i(7, 9)]
 
 var x_range = range(-6, 7)
+var y_range = range(-1, 14)
 
 var boom_line = load("res://boom_line.tscn")
 
@@ -90,6 +92,15 @@ func remove_line(y0: int):
 			var id = get_cell_source_id(loc)
 			var shape = get_cell_atlas_coords(loc)
 			set_cell(Vector2i(x, y), id, shape)
+	
+	# Remove water above y0
+	for y in range(0, y0+1):
+		for x in range(x_range[0]-1, x_range[-1]+2):
+			var loc = Vector2i(x, y)
+			var shape = get_cell_atlas_coords(loc)
+			
+			if get_cell_source_id(loc) == ID_WATER:
+				set_cell(loc, ID_EMPTY, shape)
 
 func line_flash_effect(line: int):
 	var flash = boom_line.instantiate()
@@ -97,8 +108,8 @@ func line_flash_effect(line: int):
 	add_child(flash)
 
 func _on_game_reset() -> void:
-	for x in range(-6, 7):
-		for y in range(-1, 14):
+	for x in x_range:
+		for y in y_range:
 			set_cell(Vector2i(x, y), ID_EMPTY, COORDS_NOTHING)
 	for loc in GOALS:
 		var pipe_shape = get_cell_atlas_coords(loc)

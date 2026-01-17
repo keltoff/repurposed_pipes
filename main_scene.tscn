@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://dredt2euhd4sp"]
+[gd_scene load_steps=45 format=4 uid="uid://dredt2euhd4sp"]
 
 [ext_resource type="Script" uid="uid://ctrdjlesjen4i" path="res://main_scene.gd" id="1_84odl"]
 [ext_resource type="Texture2D" uid="uid://irq2uedvugdh" path="res://img/pipes_rotated.png" id="1_d5x1h"]
@@ -20,7 +20,9 @@
 [ext_resource type="AudioStream" uid="uid://djq0j56kvii0j" path="res://music/Sketchbook 2025-11-12.ogg" id="14_vimvf"]
 [ext_resource type="AudioStream" uid="uid://bs7kkliwsdr4n" path="res://music/VGMA Challenge 08.ogg" id="15_ghshe"]
 [ext_resource type="AudioStream" uid="uid://bjvp2vkq454kj" path="res://music/Sketchbook 2025-12-14 LOOP.ogg" id="16_fv2he"]
+[ext_resource type="Script" uid="uid://pntsq2j7ohuf" path="res://score.gd" id="16_j8kkg"]
 [ext_resource type="AudioStream" uid="uid://2bc4g3jc1hwa" path="res://music/VGMA Challenge 14.ogg" id="17_5smuj"]
+[ext_resource type="PackedScene" uid="uid://bvu5teh2tfvfh" path="res://shadow_label.tscn" id="17_yh4yk"]
 [ext_resource type="AudioStream" uid="uid://cfo6b8ypb5d2u" path="res://music/VGMA Challenge 20.ogg" id="18_y5ved"]
 [ext_resource type="AudioStream" uid="uid://bj2yjnx8hd0nv" path="res://music/Patreon Challenge 13.ogg" id="19_kv3aw"]
 [ext_resource type="Texture2D" uid="uid://d0rkvow530d1l" path="res://img/left_touch_button.png" id="24_kv3aw"]
@@ -106,16 +108,12 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 modulate_color = Color(0.6, 0.6, 0.6, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fv2he"]
-texture = ExtResource("2_vimvf")
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-modulate_color = Color(0.6, 0.6, 0.6, 1)
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5smuj"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_84odl")
+metadata/_edit_vertical_guides_ = [603.0, 1107.0]
+metadata/_edit_horizontal_guides_ = [571.0]
 
 [node name="Background" type="ColorRect" parent="."]
 z_index = -1
@@ -154,7 +152,7 @@ axis_stretch_vertical = 1
 [node name="Tiles" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
 position = Vector2(304, 96)
-tile_map_data = PackedByteArray("AAD5////AAACAAIAAAD5/wAAAAACAAIAAAD5/wEAAAACAAIAAAD5/wIAAAACAAIAAAD5/wQAAAACAAIAAAD5/wUAAAACAAIAAAD5/wYAAAACAAIAAAD5/wcAAAACAAIAAAD5/wkAAAACAAIAAAD5/woAAAACAAIAAAD5/wgAAAACAAIAAAAHAP//AAACAAIAAAAHAAAAAAACAAIAAAAHAAEAAAACAAIAAAAHAAIAAAACAAIAAAAHAAQAAAACAAIAAAAHAAUAAAACAAIAAAAHAAYAAAACAAIAAAAHAAcAAAACAAIAAAAHAAgAAAACAAIAAAAHAAkAAAACAAIAAAAHAAoAAAACAAIAAAAHAAsAAAACAAIAAAAHAAwAAAACAAIAAAAHAA0AAAACAAIAAAD5/wsAAAACAAIAAAD5/wwAAAACAAIAAAD5/w0AAAACAAIAAAD6/w4AAAABAAEAAAD7/w4AAAABAAEAAAD8/w4AAAABAAEAAAD9/w4AAAABAAEAAAD+/w4AAAABAAEAAAAAAA4AAAABAAEAAAABAA4AAAABAAEAAAACAA4AAAABAAEAAAADAA4AAAACAAIAAAAEAA4AAAABAAEAAAAFAA4AAAABAAEAAAAGAA4AAAABAAEAAAD5/w4AAAABAAIAAAAHAA4AAAAAAAMAAAAHAAMAAAABAAEAAAD//w4AAAABAAEAAAD5/wMAAAABAAEAAAA=")
+tile_map_data = PackedByteArray("AAD5////AAACAAIAAAD5/wAAAAACAAIAAAD5/wEAAAACAAIAAAD5/wIAAAACAAIAAAD5/wQAAAACAAIAAAD5/wUAAAACAAIAAAD5/wYAAAACAAIAAAD5/wcAAAACAAIAAAD5/wkAAAABAAEAAAD5/woAAAACAAIAAAD5/wgAAAACAAIAAAAHAP//AAACAAIAAAAHAAAAAAACAAIAAAAHAAEAAAACAAIAAAAHAAIAAAACAAIAAAAHAAQAAAACAAIAAAAHAAUAAAACAAIAAAAHAAYAAAACAAIAAAAHAAcAAAACAAIAAAAHAAgAAAACAAIAAAAHAAkAAAABAAEAAAAHAAoAAAACAAIAAAAHAAsAAAACAAIAAAAHAAwAAAACAAIAAAAHAA0AAAACAAIAAAD5/wsAAAACAAIAAAD5/wwAAAACAAIAAAD5/w0AAAACAAIAAAD6/w4AAAABAAEAAAD7/w4AAAABAAEAAAD8/w4AAAABAAEAAAD9/w4AAAABAAEAAAD+/w4AAAABAAEAAAAAAA4AAAABAAEAAAABAA4AAAABAAEAAAACAA4AAAABAAEAAAADAA4AAAACAAIAAAAEAA4AAAABAAEAAAAFAA4AAAABAAEAAAAGAA4AAAABAAEAAAD5/w4AAAABAAIAAAAHAA4AAAAAAAMAAAAHAAMAAAABAAEAAAD//w4AAAABAAEAAAD5/wMAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_gyfs4")
 script = ExtResource("4_7ycvg")
 
@@ -174,9 +172,9 @@ autostart = true
 script = ExtResource("7_ak604")
 
 [node name="Frame" type="NinePatchRect" parent="."]
-offset_left = 611.0
+offset_left = 604.0
 offset_top = 38.0
-offset_right = 1116.0
+offset_right = 1108.0
 offset_bottom = 137.0
 texture = ExtResource("1_gyfs4")
 patch_margin_left = 4
@@ -233,16 +231,83 @@ texture_hover = ExtResource("27_j8kkg")
 texture_disabled = ExtResource("27_j8kkg")
 texture_focused = ExtResource("27_j8kkg")
 
-[node name="SFXVolume" type="NinePatchRect" parent="."]
-offset_left = 611.0
-offset_top = 156.0
-offset_right = 1116.0
-offset_bottom = 255.0
+[node name="Score" type="NinePatchRect" parent="."]
+offset_left = 603.0
+offset_top = 153.0
+offset_right = 1108.0
+offset_bottom = 239.0
 texture = ExtResource("1_gyfs4")
 patch_margin_left = 4
 patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
+script = ExtResource("16_j8kkg")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Score"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.99300003
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -0.07400513
+offset_bottom = -3.0
+color = Color(0, 0, 0, 1)
+
+[node name="LabelScore" parent="Score" instance=ExtResource("17_yh4yk")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 14.0
+offset_top = 7.0
+offset_right = -9.0
+offset_bottom = 43.0
+grow_horizontal = 2
+text = "000000000 "
+value = 0
+digits = 10
+
+[node name="LabelMulti" parent="Score" instance=ExtResource("17_yh4yk")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -43.0
+offset_right = 125.0
+offset_bottom = -7.0
+grow_vertical = 0
+text = "0 "
+value = 1
+prefix = "*"
+digits = 2
+
+[node name="LabelLatest" parent="Score" instance=ExtResource("17_yh4yk")]
+layout_mode = 1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 163.0
+offset_top = -42.0
+offset_right = -5.820038
+offset_bottom = -6.0
+text = "000 "
+value = 0
+prefix = "+"
+digits = 4
+
+[node name="SFXVolume" type="NinePatchRect" parent="."]
+offset_left = 603.0
+offset_top = 248.0
+offset_right = 1108.0
+offset_bottom = 347.0
+texture = ExtResource("1_gyfs4")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+metadata/_edit_group_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SFXVolume"]
 layout_mode = 1
@@ -287,15 +352,16 @@ ticks_on_borders = true
 ticks_position = 3
 
 [node name="MusicVolume" type="NinePatchRect" parent="."]
-offset_left = 611.0
-offset_top = 265.0
-offset_right = 1116.0
-offset_bottom = 395.0
+offset_left = 603.0
+offset_top = 357.0
+offset_right = 1108.0
+offset_bottom = 487.0
 texture = ExtResource("1_gyfs4")
 patch_margin_left = 4
 patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
+metadata/_edit_group_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MusicVolume"]
 layout_mode = 1
@@ -364,68 +430,48 @@ text = "Next song → "
 alignment = 2
 
 [node name="RestartEasy" type="NinePatchRect" parent="."]
-offset_left = 611.0
-offset_top = 411.0
-offset_right = 856.0
-offset_bottom = 517.0
+offset_left = 603.0
+offset_top = 511.0
+offset_right = 791.0
+offset_bottom = 571.0
 texture = ExtResource("1_gyfs4")
 patch_margin_left = 4
 patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
+metadata/_edit_group_ = true
 
 [node name="RestartEasyButton" type="Button" parent="RestartEasy"]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 242.0
-offset_bottom = 104.0
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_ghshe")
-text = "Restart
-
-Easy
-single goal"
-
-[node name="RestartNormal" type="NinePatchRect" parent="."]
-offset_left = 868.0
-offset_top = 411.0
-offset_right = 1116.0
-offset_bottom = 517.0
-texture = ExtResource("1_gyfs4")
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
-
-[node name="RestartNormalButton" type="Button" parent="RestartNormal"]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 245.0
-offset_bottom = 104.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_fv2he")
-text = "Restart 
-
-Normal
-both goals"
+text = "Restart"
 
 [node name="Credits" type="NinePatchRect" parent="."]
-offset_left = 611.0
-offset_top = 533.0
-offset_right = 1116.0
-offset_bottom = 573.0
+offset_left = 800.0
+offset_top = 511.0
+offset_right = 1108.0
+offset_bottom = 571.0
 texture = ExtResource("1_gyfs4")
 patch_margin_left = 4
 patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
+metadata/_edit_group_ = true
 
 [node name="PauseCreditsButton" type="Button" parent="Credits"]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 503.0
-offset_bottom = 38.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.98700005
+anchor_bottom = 1.0
+offset_right = 3.0039978
 theme_override_styles/normal = SubResource("StyleBoxEmpty_5smuj")
 text = "Pause / Credits"
 
@@ -517,6 +563,13 @@ text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ScoreLabel" type="Label" parent="GameOverOverlay/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Final score: 12345
+"
+horizontal_alignment = 1
+
 [node name="VictoryOverlay" type="CanvasLayer" parent="." groups=["Overlays"]]
 visible = false
 
@@ -544,9 +597,12 @@ vertical_alignment = 1
 [connection signal="reset" from="." to="NewBlock" method="_on_game_reset"]
 [connection signal="reset" from="." to="Timer" method="_on_game_reset"]
 [connection signal="reset" from="." to="Frame/PieceQueue" method="_on_game_reset"]
+[connection signal="reset" from="." to="Score" method="_on_game_reset"]
 [connection signal="unpaused" from="." to="NewBlock" method="_on_game_unpaused"]
 [connection signal="unpaused" from="." to="Timer" method="_on_game_unpaused"]
+[connection signal="lines_removed" from="Tiles" to="Score" method="_on_lines_removed"]
 [connection signal="water_reached_goal" from="Tiles" to="." method="_on_tiles_water_reached_goal"]
+[connection signal="water_reached_goal" from="Tiles" to="Score" method="_on_water_reached_goal"]
 [connection signal="block_landed" from="NewBlock" to="SFXManager" method="_on_new_block_block_landed"]
 [connection signal="block_moved_down" from="NewBlock" to="SFXManager" method="_on_new_block_block_moved_down"]
 [connection signal="block_moved_left" from="NewBlock" to="SFXManager" method="_on_new_block_block_moved_left"]
@@ -568,6 +624,5 @@ vertical_alignment = 1
 [connection signal="pressed" from="MusicVolume/VBoxContainer/GridContainer/PreviousSong" to="MusicPlayer" method="_on_previous_song_pressed"]
 [connection signal="pressed" from="MusicVolume/VBoxContainer/GridContainer/NextSong" to="MusicPlayer" method="_on_next_song_pressed"]
 [connection signal="pressed" from="RestartEasy/RestartEasyButton" to="." method="_on_restart_easy_button_pressed"]
-[connection signal="pressed" from="RestartNormal/RestartNormalButton" to="." method="_on_restart_normal_button_pressed"]
 [connection signal="pressed" from="Credits/PauseCreditsButton" to="." method="_on_pause_credits_button_pressed"]
 [connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]
