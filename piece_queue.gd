@@ -1,4 +1,4 @@
-extends NinePatchRect
+extends Node2D
 
 var patterns = [
 	load("res://pieces/piece_i.tscn"),
@@ -21,7 +21,7 @@ func add_random_piece():
 	resort_items()
 
 func pop_piece():
-	var piece = self.get_child(0)
+	var piece = self.get_child(1)
 	self.remove_child(piece)
 	add_random_piece()
 	resort_items()
@@ -29,12 +29,12 @@ func pop_piece():
 
 func resort_items():
 	var step = 100
-	var x0 = step
-	var y = size.y / 2
+	var x0 = 0
 	
 	for child in get_children():
-		child.position = Vector2(x0, y)
-		x0 += step
+		if child.name != 'Frame':
+			child.position = Vector2(x0, 0)
+			x0 += step
 
 
 func _on_game_reset() -> void:
