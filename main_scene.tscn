@@ -133,6 +133,7 @@ texture = ExtResource("2_vimvf")
 stretch_mode = 1
 
 [node name="Frame" type="NinePatchRect" parent="Background"]
+y_sort_enabled = true
 layout_mode = 0
 offset_left = 110.0
 offset_top = 61.0

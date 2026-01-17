@@ -24,7 +24,7 @@ func pause_game():
 		$PauseCreditsOverlay.show()
 		# don't touch pause - player must restart the game
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Pause"):
 		pause_game()
 

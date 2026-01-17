@@ -12,10 +12,10 @@ var sfx_players: Array[AudioStreamPlayer]
 func _ready() -> void:
 	sfx_players.assign(find_children("SFXPlayer?", "AudioStreamPlayer"))
 
-func play(stream: AudioStream, volume_db: float = 0.0) -> void:
+func play(stream: AudioStream, volume_db_adjustment: float = 0.0) -> void:
 	var least_recent = sfx_players.pop_front()
 	least_recent.stream = stream
-	least_recent.volume_db = self.volume_db + volume_db
+	least_recent.volume_db = self.volume_db + volume_db_adjustment
 	least_recent.play()
 	sfx_players.push_back(least_recent)
 
