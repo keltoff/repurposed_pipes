@@ -23,8 +23,8 @@ func _on_previous_song_pressed() -> void:
 func _on_next_song_pressed() -> void:
 	change_song(+1)
 
-
-
-
 func _on_music_slider_value_changed(value: float) -> void:
-	volume_db = value
+	if value == %MusicSlider.min_value:
+		volume_db = -INF
+	else:
+		volume_db = value

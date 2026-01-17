@@ -35,4 +35,7 @@ func _on_new_block_block_moved_right() -> void:
 	self.play(moved_right_snd)
 
 func _on_sfx_slider_value_changed(value: float) -> void:
-	volume_db = value
+	if value == %SFXSlider.min_value:
+		volume_db = -INF
+	else:
+		volume_db = value

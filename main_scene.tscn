@@ -353,6 +353,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SFXSlider" type="HSlider" parent="SFXVolume/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -408,6 +409,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MusicSlider" type="HSlider" parent="MusicVolume/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -471,6 +473,7 @@ offset_left = 1.0
 offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxTexture_ghshe")
 text = "Restart"
 
@@ -492,6 +495,7 @@ anchors_preset = -1
 anchor_right = 0.98700005
 anchor_bottom = 1.0
 offset_right = 3.0039978
+focus_mode = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_5smuj")
 text = "Pause / Credits"
 
