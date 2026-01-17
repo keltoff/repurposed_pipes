@@ -33,7 +33,7 @@ func add_piece():
 	next_piece_idx += 1
 
 func pop_piece():
-	var piece = self.get_child(1)
+	var piece = self.get_child(0)
 	self.remove_child(piece)
 	add_piece()
 	resort_items()
@@ -44,13 +44,11 @@ func resort_items():
 	var x0 = 0
 	
 	for child in get_children():
-		if child.name != 'Frame':
-			child.position = Vector2(x0, 0)
-			x0 += step
+		child.position = Vector2(x0, 0)
+		x0 += step
 
 
 func _on_game_reset() -> void:
 	for child in get_children():
-		if child.name != 'Frame':
-			remove_child(child)
+		remove_child(child)
 	_init()

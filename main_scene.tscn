@@ -173,18 +173,11 @@ wait_time = 0.75
 autostart = true
 script = ExtResource("7_ak604")
 
-[node name="PieceQueue" type="Node2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(666, 80)
-scale = Vector2(0.5, 0.5)
-script = ExtResource("6_7ycvg")
-
-[node name="Frame" type="NinePatchRect" parent="PieceQueue"]
-offset_left = -110.0
-offset_top = -84.0
-offset_right = 395.0
-offset_bottom = 15.0
-scale = Vector2(2, 2)
+[node name="Frame" type="NinePatchRect" parent="."]
+offset_left = 611.0
+offset_top = 38.0
+offset_right = 1116.0
+offset_bottom = 137.0
 texture = ExtResource("1_gyfs4")
 patch_margin_left = 4
 patch_margin_top = 4
@@ -192,6 +185,12 @@ patch_margin_right = 4
 patch_margin_bottom = 4
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+
+[node name="PieceQueue" type="Node2D" parent="Frame"]
+unique_name_in_owner = true
+position = Vector2(47, 42)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("6_7ycvg")
 
 [node name="MobileControls" type="HBoxContainer" parent="."]
 offset_left = 3.0
@@ -544,7 +543,7 @@ vertical_alignment = 1
 [connection signal="reset" from="." to="Tiles" method="_on_game_reset"]
 [connection signal="reset" from="." to="NewBlock" method="_on_game_reset"]
 [connection signal="reset" from="." to="Timer" method="_on_game_reset"]
-[connection signal="reset" from="." to="PieceQueue" method="_on_game_reset"]
+[connection signal="reset" from="." to="Frame/PieceQueue" method="_on_game_reset"]
 [connection signal="unpaused" from="." to="NewBlock" method="_on_game_unpaused"]
 [connection signal="unpaused" from="." to="Timer" method="_on_game_unpaused"]
 [connection signal="water_reached_goal" from="Tiles" to="." method="_on_tiles_water_reached_goal"]
