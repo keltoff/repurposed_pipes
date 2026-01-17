@@ -14,12 +14,14 @@ var patterns: Array
 # this will force a shuffle when the game starts
 var next_piece_idx: int = 0
 
+const QUEUE_LENGTH = 5
+
 func _init():
-	# We have a long prediction queue, and lack of repeats is conspicuous
-	patterns = base_patterns.duplicate()
+	# # We have a long prediction queue, and lack of repeats is conspicuous
+	# patterns = base_patterns.duplicate()
 	patterns.append_array(base_patterns)
 	patterns.shuffle()	
-	for i in range(6):
+	for i in range(QUEUE_LENGTH):
 		add_piece()
 
 func add_piece():

@@ -113,7 +113,7 @@ modulate_color = Color(0.6, 0.6, 0.6, 1)
 [node name="Game" type="Node2D"]
 script = ExtResource("1_84odl")
 metadata/_edit_vertical_guides_ = [603.0, 1107.0]
-metadata/_edit_horizontal_guides_ = [571.0]
+metadata/_edit_horizontal_guides_ = [571.0, 38.0, 137.0]
 
 [node name="Background" type="ColorRect" parent="."]
 z_index = -1
@@ -149,6 +149,26 @@ patch_margin_bottom = 4
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 1
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Background"]
+layout_mode = 0
+offset_left = 893.99994
+offset_top = 38.0
+offset_right = 1034.0
+offset_bottom = 137.0
+scale = Vector2(1.5, 1)
+theme_override_colors/default_color = Color(0.69, 0.2967, 0.2967, 1)
+theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/bold_font_size = 28
+theme_override_font_sizes/bold_italics_font_size = 28
+theme_override_font_sizes/italics_font_size = 28
+theme_override_font_sizes/mono_font_size = 28
+bbcode_enabled = true
+text = "[b]Junk
+yard
+[i]jam [/i][/b]"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="Tiles" type="TileMapLayer" parent="."]
 unique_name_in_owner = true
 position = Vector2(304, 96)
@@ -172,9 +192,9 @@ autostart = true
 script = ExtResource("7_ak604")
 
 [node name="Frame" type="NinePatchRect" parent="."]
-offset_left = 604.0
+offset_left = 603.0
 offset_top = 38.0
-offset_right = 1108.0
+offset_right = 892.0
 offset_bottom = 137.0
 texture = ExtResource("1_gyfs4")
 patch_margin_left = 4
@@ -429,7 +449,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_fv2he")
 text = "Next song → "
 alignment = 2
 
-[node name="RestartEasy" type="NinePatchRect" parent="."]
+[node name="Restart" type="NinePatchRect" parent="."]
 offset_left = 603.0
 offset_top = 511.0
 offset_right = 791.0
@@ -441,7 +461,7 @@ patch_margin_right = 4
 patch_margin_bottom = 4
 metadata/_edit_group_ = true
 
-[node name="RestartEasyButton" type="Button" parent="RestartEasy"]
+[node name="RestartButton" type="Button" parent="Restart"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -570,27 +590,6 @@ text = "Final score: 12345
 "
 horizontal_alignment = 1
 
-[node name="VictoryOverlay" type="CanvasLayer" parent="." groups=["Overlays"]]
-visible = false
-
-[node name="PanelContainer" type="PanelContainer" parent="VictoryOverlay"]
-anchors_preset = -1
-anchor_left = 0.286
-anchor_top = 0.469
-anchor_right = 0.286
-anchor_bottom = 0.469
-offset_left = -217.47202
-offset_top = -240.91202
-offset_right = 198.52798
-offset_bottom = 240.08798
-
-[node name="Label" type="Label" parent="VictoryOverlay/PanelContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Victory"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [connection signal="paused" from="." to="NewBlock" method="_on_game_paused"]
 [connection signal="paused" from="." to="Timer" method="_on_game_paused"]
 [connection signal="reset" from="." to="Tiles" method="_on_game_reset"]
@@ -601,7 +600,6 @@ vertical_alignment = 1
 [connection signal="unpaused" from="." to="NewBlock" method="_on_game_unpaused"]
 [connection signal="unpaused" from="." to="Timer" method="_on_game_unpaused"]
 [connection signal="lines_removed" from="Tiles" to="Score" method="_on_lines_removed"]
-[connection signal="water_reached_goal" from="Tiles" to="." method="_on_tiles_water_reached_goal"]
 [connection signal="water_reached_goal" from="Tiles" to="Score" method="_on_water_reached_goal"]
 [connection signal="block_landed" from="NewBlock" to="SFXManager" method="_on_new_block_block_landed"]
 [connection signal="block_moved_down" from="NewBlock" to="SFXManager" method="_on_new_block_block_moved_down"]
@@ -623,6 +621,6 @@ vertical_alignment = 1
 [connection signal="value_changed" from="MusicVolume/VBoxContainer/MusicSlider" to="MusicPlayer" method="_on_music_slider_value_changed"]
 [connection signal="pressed" from="MusicVolume/VBoxContainer/GridContainer/PreviousSong" to="MusicPlayer" method="_on_previous_song_pressed"]
 [connection signal="pressed" from="MusicVolume/VBoxContainer/GridContainer/NextSong" to="MusicPlayer" method="_on_next_song_pressed"]
-[connection signal="pressed" from="RestartEasy/RestartEasyButton" to="." method="_on_restart_easy_button_pressed"]
+[connection signal="pressed" from="Restart/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Credits/PauseCreditsButton" to="." method="_on_pause_credits_button_pressed"]
 [connection signal="finished" from="MusicPlayer" to="MusicPlayer" method="_on_finished"]
