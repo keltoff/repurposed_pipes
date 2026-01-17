@@ -133,6 +133,8 @@ texture = ExtResource("2_vimvf")
 stretch_mode = 1
 
 [node name="Frame" type="NinePatchRect" parent="Background"]
+visible = false
+z_index = 1
 y_sort_enabled = true
 layout_mode = 0
 offset_left = 110.0
@@ -457,24 +459,27 @@ anchor_left = 0.286
 anchor_top = 0.469
 anchor_right = 0.286
 anchor_bottom = 0.469
-offset_left = -219.47202
-offset_top = -239.91202
-offset_right = 202.52798
-offset_bottom = 244.08798
+offset_left = -217.47202
+offset_top = -240.91202
+offset_right = 197.52798
+offset_bottom = 240.08798
 
 [node name="Text" type="RichTextLabel" parent="PauseCreditsOverlay/PanelContainer"]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
+theme_override_font_sizes/bold_italics_font_size = 14
+theme_override_font_sizes/italics_font_size = 14
+theme_override_font_sizes/mono_font_size = 14
 bbcode_enabled = true
 text = "[u][font_size=24]Made by[/font_size][/u]
 
 Kelton & Lyco
-for 
+[font_size=9]for[/font_size]
 Godot Wild Jam #89
 
 [u][font_size=24]Sound effects[/font_size][/u]
-
-FilmCow Royalty Free Sound Effects Library
-
+FilmCow Royalty Free Sound Effects Library,
 JSFXR sound generator
 
 [u][font_size=24]Music[/font_size][/u]
@@ -482,8 +487,13 @@ JSFXR sound generator
 Abstraction: FREE Music Loop Bundle
 
 [u][font_size=24]Graphics[/font_size][/u]
+OpenGameArt: Mumu, TwistedDonkey and Satik64
 
-OpenGameArt"
+[u][font_size=24]Font[/font_size][/u]
+GGBotNet's Robotronika
+
+
+[b]Many thanks to all of you[/b]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -496,10 +506,10 @@ anchor_left = 0.286
 anchor_top = 0.469
 anchor_right = 0.286
 anchor_bottom = 0.469
-offset_left = -219.47202
-offset_top = -239.91202
-offset_right = 202.52798
-offset_bottom = 244.08798
+offset_left = -217.47202
+offset_top = -240.91202
+offset_right = 198.52798
+offset_bottom = 240.08798
 
 [node name="Label" type="Label" parent="GameOverOverlay/PanelContainer"]
 layout_mode = 2
@@ -517,10 +527,10 @@ anchor_left = 0.286
 anchor_top = 0.469
 anchor_right = 0.286
 anchor_bottom = 0.469
-offset_left = -219.47202
-offset_top = -239.91202
-offset_right = 202.52798
-offset_bottom = 244.08798
+offset_left = -217.47202
+offset_top = -240.91202
+offset_right = 198.52798
+offset_bottom = 240.08798
 
 [node name="Label" type="Label" parent="VictoryOverlay/PanelContainer"]
 layout_mode = 2
@@ -534,7 +544,7 @@ vertical_alignment = 1
 [connection signal="reset" from="." to="Tiles" method="_on_game_reset"]
 [connection signal="reset" from="." to="NewBlock" method="_on_game_reset"]
 [connection signal="reset" from="." to="Timer" method="_on_game_reset"]
-[connection signal="reset" from="." to="PieceQueue/Frame" method="_on_game_reset"]
+[connection signal="reset" from="." to="PieceQueue" method="_on_game_reset"]
 [connection signal="unpaused" from="." to="NewBlock" method="_on_game_unpaused"]
 [connection signal="unpaused" from="." to="Timer" method="_on_game_unpaused"]
 [connection signal="water_reached_goal" from="Tiles" to="." method="_on_tiles_water_reached_goal"]
